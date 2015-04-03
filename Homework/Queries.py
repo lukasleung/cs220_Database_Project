@@ -4,156 +4,196 @@ Created on Mar 22, 2015
 @author: Yakisoba
 '''
 import sys
-import sqlite3 as db
+# import sqlite3 as db
+import MySQLdb as db
 import View
 
+
 # global db connection for ease of coding
-filename = "university.db"
-conn = db.connect(filename)
+#filename = "university.db"
+# conn = db.connect(filename)
+conn = db.connect("localhost", "niwamoto", "niwamoto", "niwamoto")
 cursor = conn.cursor()
+
 
 def blank_test():
     return True
+
 ################################################################################
-def update(sql,params=None,test=blank_test,view=View.blank_view):
-    success=False
-    data=None
+def update(sql, params=None, test=blank_test, view=View.blank_view):
+    success = False
+    data = None
     try:
         if params is None:
             cursor.execute(sql)
         else:
-            cursor.execute(sql,params)   
+            cursor.execute(sql, params)
         data = cursor.fetchall()
-        success=True
+        success = True
     except:
-        success=False
-        View.invalid(sys.exc_info()[0])
+        success = False
+        View.invalid(sys.exc_info())
     finally:
         if success and test():
             conn.commit()
-            view(data)
-            #View.Success()
+            return view(data)
+            # return view.Success()
         else:
             cursor.rollback()
-            View.fail(data)
+            return view.fail(data)
+
+
 ################################################################################
-def retrieval(sql,params=None,view=View.blank_view):
+def retrieval(sql, params=None, view=View.blank_view):
     try:
         if params is None:
             cursor.execute(sql)
         else:
-            cursor.execute(sql,params)
+            cursor.execute(sql, params)
         data = cursor.fetchall()
-        view(data)
+        return view(data)
     except:
-        View.invalid(sys.exc_info()[0])   
+        return View.invalid(sys.exc_info())
+
+
 ################################################################################
 def disconnect():
     conn.close()
+
+
 ################################################################################
 def show_students():
-    sql = """select * from Students"""
-    params = None   
-    view=View.show_students
-    retrieval(sql,params,view) 
+    sql = """SELECT * FROM Student"""
+    params = None
+    view = View.show_students
+    return retrieval(sql, params, view)
+
+
 ################################################################################
 def show_courses():
-    sql = """Select * from Course"""
+    sql = """SELECT * FROM Course"""
     params = None
-    view=View.show_courses
-    retrieval(sql,params,view) 
+    view = View.show_courses
+    return retrieval(sql, params, view)
+
+
 ################################################################################
 def show_rooms():
-    sql = """select * from Room"""
+    sql = """SELECT * FROM Room"""
     params = None
     view = View.show_rooms
-    retrieval(sql,params,view) 
+    return retrieval(sql, params, view)
+
+
 ################################################################################
 def show_departments():
-    sql = """select * from Department"""
+    sql = """SELECT * FROM Department"""
     params = None
-    view=View.show_departments
-    retrieval(sql,params,view) 
+    view = View.show_departments
+    return retrieval(sql, params, view)
+
+
 ################################################################################
 def show_majors():
-    sql = """select * from MajorsIn"""
+    sql = """SELECT * FROM MajorsIn"""
     params = None
     view = View.show_majors
-    retrieval(sql,params,view) 
+    return retrieval(sql, params, view)
+
+
 ################################################################################
-def add_student(student,name):
-    sql = """Insert into Student Values(?,?)"""
-    params = (student,name)
-    view=View.add_student
-    test=blank_test
-    update(sql,params,test,view)
+def add_student(student, name):
+    sql = """INSERT INTO Student Values( %s , %s )"""
+    params = (student, name)
+    view = View.add_student
+    test = blank_test
+    update(sql, params, test, view)
+
+
 ################################################################################
-def add_course(course,start,end,room):
-    sql = """Insert into Course Values (?,?,?,?)"""
-    params = (course,start,end,room)
+def add_course(course, start, end, room):
+    sql = """INSERT INTO Course Values ( %s , %s , %s , %s )"""
+    params = (course, start, end, room)
     view = View.add_course
-    test=blank_test
-    update(sql,params,test,view)
+    test = blank_test
+    update(sql, params, test, view)
+
+
 ################################################################################
 def remove_student(student):
-    sql = """Delete from Student where id=?"""
+    sql = """DELETE FROM Student WHERE id= %s """
     params = (student,)
     view = View.remove_student
-    test=blank_test
-    update(sql,params,test,view)
+    test = blank_test
+    update(sql, params, test, view)
+
+
 ################################################################################
-def drop_course(student,course):
-    sql = """Delete from Course where student=? AND course = ?"""
-    params = (student,course)
+def drop_course(student, course):
+    sql = """DELETE FROM Course WHERE student= %s  AND course =  %s """
+    params = (student, course)
     view = View.remove_student
-    test=blank_test
-    update(sql,params,test,view)
+    test = blank_test
+    update(sql, params, test, view)
+
+
 ################################################################################
 def remove_course(course):
-    sql = """Delete from Course where course= ?"""
+    sql = """DELETE FROM Course WHERE course=  %s """
     params = (course,)
     view = View.remove_course
-    test=blank_test
-    update(sql,params,test,view)
+    test = blank_test
+    update(sql, params, test, view)
+
+
 ################################################################################
-def enroll_course(student,course,credit):
-    sql = """Insert into Enrolled Values (?,?,?)"""
-    params = (student,course,credit)
+def enroll_course(student, course, credit):
+    sql = """INSERT INTO Enrolled Values ( %s , %s , %s )"""
+    params = (student, course, credit)
     view = View.enroll_course
-    test=blank_test
-    update(sql,params,test,view)
+    test = blank_test
+    update(sql, params, test, view)
+
+
 ################################################################################
-def add_major(student,major):
-    sql = """Insert into MajorsIn Values (?,?)"""
-    params = (student,major)
+def add_major(student, major):
+    sql = """INSERT INTO MajorsIn Values ( %s , %s )"""
+    params = (student, major)
     view = View.add_major
-    test=blank_test
-    update(sql,params,test,view)
+    test = blank_test
+    update(sql, params, test, view)
+
+
 ################################################################################
-def remove_major(student,major):
-    sql = """Delete from MajorsIn Where student=? AND dept=?"""
-    params = (student,major)
+def remove_major(student, major):
+    sql = """DELETE FROM MajorsIn WHERE student= %s  AND dept= %s """
+    params = (student, major)
     view = View.remove_major
-    test=blank_test
-    update(sql,params,test,view)
+    test = blank_test
+    update(sql, params, test, view)
+
+
 ################################################################################
 def earliest_start():
     sql = """
-    select name, start_time 
-    from course c 
-    where not exists 
-            (select * 
-            from course c2 
-            where c.start_time<c2.start_time);"""
+    SELECT name, start_time
+    FROM Course c
+    WHERE not exists
+            (SELECT *
+            FROM Course c2
+            WHERE c.start_time<c2.start_time);"""
     params = None
     view = View.earliest_start
-    retrieval(sql,params,view)
+    return retrieval(sql, params, view)
+
+
 ################################################################################
 def room_capacity(capacity=0):
-    sql = """select name
-            from room
-            where capacity >= ?"""
+    sql = """SELECT name
+            FROM Room
+            WHERE capacity >=  %s """
     params = (capacity,)
-    view=View.room_capacity
-    retrieval(sql,params,view)
+    view = View.room_capacity
+    return retrieval(sql, params, view)
+
 ################################################################################
