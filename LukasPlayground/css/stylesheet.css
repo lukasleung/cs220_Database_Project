@@ -33,7 +33,7 @@ h3{
 	}
 	
 .menuitem:hover{
-	background-color: #B2FFB2;
+	background-color: #99FFCC;
 	}
 	
 .selected {
@@ -73,7 +73,7 @@ h3{
 	clear:both;
 	float:left;
 	width:98.8%;
-	background-color: #33CC33;
+	background-color: #CC99FF;
 	color: #FFF;
 	height: 32px;
 	font-size: 20px;
