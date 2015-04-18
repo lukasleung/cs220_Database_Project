@@ -35,39 +35,7 @@ h3{
 .menuitem:hover{
 	background-color: #99FFCC;
 	}
-	
-.selected {
-	background-color: #D8DFEA;
-	text-align: right;
-	padding: 9px 10px 9px 0;
-	margin: 2px;
-	font-size: 14px;
-	font-family:"lucida grande",tahoma,verdana,arial,sans-serif;
-}
 
-.maintable{
-	background-color: #fff;
-	padding: 1px;
-	font-size: 14px;
-	}
-
-.maintable td{
-	background-color: #f2f2f2;
-	border: 1px solid #e2e2e2;
-	padding: 3px;
-	}
-	
-.infoChunk{
-	background-color: #f9f9f9;
-	border: 2px solid #e2e2e2;
-	padding: 5px;
-	margin: 10px;
-	margin-right: 80px;
-	}
-
-.infoChunk .maintable{
-	background-color: #f9f9f9;
-	}
 /* Header styles */
 #header {
 	clear:both;
@@ -75,7 +43,7 @@ h3{
 	width:98.8%;
 	background-color: #CC99FF;
 	color: #FFF;
-	height: 35px;
+	height: 37px;
 	font-size: 20px;
 	font-family:"lucida grande",tahoma,verdana,arial,sans-serif;
 	font-weight: bold;
@@ -142,4 +110,22 @@ h3{
 #footer p {
 	padding:5px;
 	margin:0;
+}
+
+/* Post and Comment Stuff */
+.p_c {
+	width: 80%;
+}
+.p_c form p{
+	padding-left: 20px;
+	font-size: 12px;
+}
+.l_d_buttons {
+	width: 20%;
+	color: blue;
+	float: right;
+}
+a {
+	text-decoration: none;
+	color: black;
 }
