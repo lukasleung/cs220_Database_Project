@@ -57,10 +57,12 @@ CREATE TABLE posts_likes(
 	uid INT NOT NULL, --who liked the post
 	pid INT NOT NULL, --the post in question
 	pos BOOLEAN NOT NULL, -- like or dislike of post
+	ouid INT NOT NULL, --user who created the post
 	ts TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
 	PRIMARY KEY (uid, pid),
 	FOREIGN KEY (pid) REFERENCES posts(pid),
-	FOREIGN KEY (uid) REFERENCES users(uid)
+	FOREIGN KEY (uid) REFERENCES users(uid),
+	FOREIGN KEY (ouid) REFERENCES users(uid)
 )
 
 --Insertions->update posts, comments, users pos/neg
@@ -68,10 +70,12 @@ CREATE TABLE comments_likes(
 	cid INT NOT NULL, --the comment in question
 	uid INT NOT NULL, --who liked the comment
 	pos BOOLEAN NOT NULL, --like or dislike of comment
+	ouid INT NOT NULL, --user who created the post
 	ts TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
 	PRIMARY KEY (uid, cid),
 	FOREIGN KEY (cid) REFERENCES comments(cid),
-	FOREIGN KEY (uid) REFERENCES users(uid)
+	FOREIGN KEY (uid) REFERENCES users(uid),
+	FOREIGN KEY (ouid) REFERENCES users(uid)
 )
 
 
