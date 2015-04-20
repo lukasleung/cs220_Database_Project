@@ -113,14 +113,23 @@ h3{
 }
 
 /* Post and Comment Stuff */
+#my_pc {
+	padding: 1%;
+	color: #66CCFF;
+	font-family:"lucida grande",tahoma,verdana,arial,sans-serif;
+}
 .p_c {
+	padding: 1%;
 	width: 80%;
 }
-.p_c form p{
+.comment{
 	padding-left: 20px;
 	font-size: 12px;
+	color: orange;
 }
 .l_d_buttons {
+	padding-top: 3%;
+	padding-right: 9%;
 	width: 20%;
 	color: blue;
 	float: right;
@@ -128,4 +137,14 @@ h3{
 a {
 	text-decoration: none;
 	color: black;
+}
+textarea {
+	font-size: 20px;
+	background-color: #FFFFFF;
+	color: #66CCFF;
+	border: 2px double #33CCFF;
+	width: 600px;
+	height: 100px;
+	resize: none;
+	maxlength: 140;
 }
