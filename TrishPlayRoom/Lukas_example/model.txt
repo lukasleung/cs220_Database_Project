@@ -1,0 +1,89 @@
+import MySQLdb as db
+import time
+
+def getAllRooms():
+	conn = db.connect("localhost", "lleung", "lleung", "lleung")
+	cursor = conn.cursor()
+
+	sql = "SELECT * FROM Room"
+
+	cursor.execute(sql)
+	data = cursor.fetchall()
+	##print data
+	
+	sql = "SELECT COUNT(*) FROM Room"
+	cursor.execute(sql)
+	number = cursor.fetchall()
+	
+	cursor.close()
+	conn.close()
+
+	num_data = (number, data)
+	return num_data
+
+def addRoom(rid, name, cap):
+	conn = db.connect("localhost", "lleung", "lleung", "lleung")
+	cursor = conn.cursor()
+
+	sql = "INSERT INTO Room VALUES ( %s , %s , %s )"
+	entries = (rid, name, cap)
+	cursor.execute(sql, entries)
+	conn.commit()
+
+	cursor.close()
+	conn.close()
+
+def deleteRoom(rid):
+	conn = db.connect("localhost", "lleung", "lleung", "lleung")
+	cursor = conn.cursor()
+
+	sql = "DELETE FROM Room WHERE id = %s "
+	params = (rid, )
+	cursor.execute(sql, params)
+	conn.commit()
+
+	cursor.close()
+	conn.close
+
+def getRoomInfo(rid):
+	conn = db.connect("localhost", "lleung", "lleung", "lleung")
+	cursor = conn.cursor()
+
+	param = (rid, )
+	sql = "SELECT * FROM Room WHERE id = %s "
+
+	cursor.execute(sql, param)
+	data = cursor.fetchall()
+	return data
+
+def changeCapacity(rid, cap):
+	conn = db.connect("localhost", "lleung", "lleung", "lleung")
+	cursor = conn.cursor()
+
+	sql = "UPDATE Room SET capacity = %s WHERE ID = %s "
+	params = (cap, rid)
+
+	cursor.execute(sql, params)
+	conn.commit()
+
+	cursor.close()
+	conn.close
+
+def minRoomCap(mcap):
+	conn = db.connect("localhost", "lleung", "lleung", "lleung")
+	cursor = conn.cursor()
+	param = (mcap,)
+
+	sql = "SELECT * FROM Room WHERE capacity >= %s "
+	cursor.execute(sql, param)
+	data = cursor.fetchall()
+	
+	sql = "SELECT COUNT(*) FROM Room WHERE capacity >= %s "
+	cursor.execute(sql, param)
+	number = cursor.fetchall()
+
+	cursor.close()
+	conn.close()
+
+	num_data = (number, data)
+	return num_data

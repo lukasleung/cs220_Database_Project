@@ -32,4 +32,3 @@ CREATE TRIGGER comment_add AFTER INSERT ON comments
 UPDATE posts
 SET posts.comments = posts.comments + 1
 WHERE posts.pid = NEW.pid;
-
