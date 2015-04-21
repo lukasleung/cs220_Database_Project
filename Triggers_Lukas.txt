@@ -1,34 +1,35 @@
----------------------------------------------------------------------------(Like a Comment)
-
-CREATE TRIGGER comment_like AFTER INSERT ON comments_likes
-UPDATE users
-SET users.pos = users.pos + 1
-WHERE users.uid = NEW.ouid;
-
----------------------------------------------------------------------------(Dislike a Comment)
-
-CREATE TRIGGER comment_dislike AFTER INSERT ON comments_likes
-UPDATE users
-SET users.neg = users.neg + 1
-WHERE users.uid = NEW.ouid;
-
----------------------------------------------------------------------------(Like a Post)
-
-CREATE TRIGGER post_like AFTER INSERT ON posts_likes
-UPDATE users
-SET users.pos = users.pos + 1
-WHERE users.uid = NEW.ouid;
-
----------------------------------------------------------------------------(Dislike a Post)
-
-CREATE TRIGGER post_dislike AFTER INSERT ON posts_likes
-UPDATE users
-SET users.neg = users.neg + 1
-WHERE users.uid = NEW.ouid;
-
----------------------------------------------------------------------------(Add a Comment)
+-- -------------------------------------------------------------------------(Add a Comment)
 
 CREATE TRIGGER comment_add AFTER INSERT ON comments
 UPDATE posts
 SET posts.comments = posts.comments + 1
 WHERE posts.pid = NEW.pid;
+
+-- -------------------------------------------------------------------------( (Dis)Like a Comment)
+
+CREATE TRIGGER `comment_feedback` AFTER INSERT ON `comments_likes`
+FOR EACH ROW 
+IF NEW.pos = 1 THEN
+	UPDATE users
+	SET users.pos = users.pos + 1
+	WHERE users.uid = NEW.ouid;
+ELSE
+	UPDATE users
+	SET users.neg = users.neg + 1
+	WHERE users.uid = NEW.ouid;
+END IF;
+
+
+-- -------------------------------------------------------------------------( (Dis)Like a Post)
+
+CREATE TRIGGER 'post_feedback' AFTER INSERT ON 'posts_likes'
+FOR EACH ROW
+IF NEW.pos = 1 THEN
+	UPDATE users
+	SET users.pos = users.pos + 1
+	WHERE users.uid = NEW.ouid;
+ELSE
+	UPDATE users
+	SET users.neg = users.neg + 1
+	WHERE users.uid = NEW.ouid;
+END IF;
