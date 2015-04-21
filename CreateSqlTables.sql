@@ -11,6 +11,12 @@ CREATE TABLE region(
 	UNIQUE(location)
 )
 
+CREATE TABLE topics(
+	tid INT AUTO_INCREMENT, -- region
+	topic varchar(20) NOT NULL, 
+	PRIMARY KEY (tid),
+	UNIQUE(topic)
+)
 
 CREATE TABLE users(
 	uid INT AUTO_INCREMENT, --user
@@ -28,8 +34,6 @@ CREATE TABLE posts(
 	ts TIMESTAMP DEFAULT CURRENT_TIMESTAMP, --timestamp
 	rid INT NOT NULL, --region of the post
 	comments INT DEFAULT 0, --needs a trigger to update, number of comments on a post
-	pos INT DEFAULT 0, --needs a trigger to update, likes on a post
-	neg INT DEFAULT 0, --needs a trigger to update, dislikes on a post
 	PRIMARY KEY (pid),
 	FOREIGN KEY (rid) REFERENCES region(rid)
 	FOREIGN KEY (uid) REFERENCES users(uid)
@@ -43,8 +47,6 @@ CREATE TABLE comments(
 	uid INT NOT NULL, -- user who commented
 	content varchar (140) NOT NULL, --comment content
 	ts TIMESTAMP DEFAULT CURRENT_TIMESTAMP, --timestamp of comment
-	pos INT DEFAULT 0, --needs a trigger to update, likes of comment
-	neg INT DEFAULT 0, --needs a trigger to update, dislike of comment
 	PRIMARY KEY (cid)
 	FOREIGN KEY (uid) REFERENCES users(uid)
 	FOREIGN KEY (pid) REFERENCES posts(pid)
