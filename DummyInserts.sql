@@ -21,10 +21,10 @@ VALUES
 	(5, 3, 0, 0),
 	(6, 3, 0, 0);
 
-INSERT INTO posts (pid, uid, content, ts, rid, comments)
+INSERT INTO posts (pid, uid, content, ts, rid, comments, pos, neg)
 VALUES
-	(1, 1, 'You eated my cookies', '2015-04-23 14:03:12', 1, 0),
-	(2, 2, 'Caffine is my hero', '2015-04-23 14:03:49', 2, 0);
+	(1, 1, 'You eated my cookies', '2015-04-23 14:03:12', 1, 0,0,0),
+	(2, 2, 'Caffine is my hero', '2015-04-23 14:03:49', 2, 0,0,0);
 
 
 INSERT INTO posts_likes (uid, pid, pos, ouid, ts)
@@ -34,10 +34,10 @@ VALUES
 	(4, 2, 1, 3, '2015-04-23 14:07:25');
 
 
-INSERT INTO comments (cid, pid, uid, content, ts)
+INSERT INTO comments (cid, pid, uid, content, ts, pos, neg)
 VALUES
-	(1, 1, 2, 'Those were my cookies.', '2015-04-23 14:08:25'),
-	(2, 2, 4, 'My house smells like coffee', '2015-04-23 14:09:11');
+	(1, 1, 2, 'Those were my cookies.', '2015-04-23 14:08:25',0,0),
+	(2, 2, 4, 'My house smells like coffee', '2015-04-23 14:09:11',0,0);
 
 
 INSERT INTO comments_likes (cid, uid, pos, ouid, ts)

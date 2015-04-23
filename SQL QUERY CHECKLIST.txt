@@ -1,0 +1,7 @@
+Check List SQL QUERIES:
+
+Get all Posts WHERE RID= ORDER BY
+
+Get all posts where uid= order by by ts
+
+Get all comments where pid= order by ts

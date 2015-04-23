@@ -34,6 +34,8 @@ CREATE TABLE IF NOT EXISTS  posts(
 	ts TIMESTAMP DEFAULT CURRENT_TIMESTAMP, -- timestamp
 	rid INT NOT NULL, -- regions of the post
 	comments INT DEFAULT 0, -- needs a trigger to update, number of comments on a post
+	pos INT DEFAULT 0,
+	neg INT DEFAULT 0,
 	PRIMARY KEY (pid),
 	FOREIGN KEY (rid) REFERENCES regions(rid),
 	FOREIGN KEY (uid) REFERENCES users(uid)
@@ -47,6 +49,8 @@ CREATE TABLE IF NOT EXISTS  comments(
 	uid INT NOT NULL, --  user who commented
 	content varchar (140) NOT NULL, -- comment content
 	ts TIMESTAMP DEFAULT CURRENT_TIMESTAMP, -- timestamp of comment
+	pos INT DEFAULT 0,
+	neg INT DEFAULT 0,
 	PRIMARY KEY (cid),
 	FOREIGN KEY (uid) REFERENCES users(uid),
 	FOREIGN KEY (pid) REFERENCES posts(pid)
