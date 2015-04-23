@@ -1,6 +1,0 @@
-
-CREATE TRIGGER comment_like AFTER INSERT ON comments_likes
-
-UPDATE users
-SET users.pos = users.pos+1
-WHERE users.uid=NEW.ouid;

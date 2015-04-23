@@ -4,7 +4,7 @@
 --  pos like
 
 --  region ID 1, gives you "San Francisco"
-CREATE TABLE IF NOT EXISTS  region(
+CREATE TABLE IF NOT EXISTS  regions(
 	rid INT AUTO_INCREMENT, --  region
 	location varchar(20) NOT NULL, 
 	PRIMARY KEY (rid),
@@ -12,7 +12,7 @@ CREATE TABLE IF NOT EXISTS  region(
 );
 
 CREATE TABLE IF NOT EXISTS  topics(
-	tid INT AUTO_INCREMENT, --  region
+	tid INT AUTO_INCREMENT, --  regions
 	topic varchar(20) NOT NULL, 
 	PRIMARY KEY (tid),
 	UNIQUE(topic)
@@ -20,11 +20,11 @@ CREATE TABLE IF NOT EXISTS  topics(
 
 CREATE TABLE IF NOT EXISTS  users(
 	uid INT AUTO_INCREMENT, -- user
-	rid INT NOT NULL, -- region of user
+	rid INT NOT NULL, -- regions of user
 	pos INT DEFAULT 0, -- needs a trigger to update
 	neg INT DEFAULT 0, -- needs a trigger to update
 	PRIMARY KEY (uid),
-	FOREIGN KEY (rid) REFERENCES region(rid)
+	FOREIGN KEY (rid) REFERENCES regions(rid)
 );
 
 CREATE TABLE IF NOT EXISTS  posts(
@@ -32,13 +32,13 @@ CREATE TABLE IF NOT EXISTS  posts(
 	uid INT NOT NULL, -- user of post
 	content varchar (140) NOT NULL, -- OC
 	ts TIMESTAMP DEFAULT CURRENT_TIMESTAMP, -- timestamp
-	rid INT NOT NULL, -- region of the post
+	rid INT NOT NULL, -- regions of the post
 	comments INT DEFAULT 0, -- needs a trigger to update, number of comments on a post
 	PRIMARY KEY (pid),
-	FOREIGN KEY (rid) REFERENCES region(rid),
+	FOREIGN KEY (rid) REFERENCES regions(rid),
 	FOREIGN KEY (uid) REFERENCES users(uid)
 );
---  takes user region
+--  takes user regions
 
 
 CREATE TABLE IF NOT EXISTS  comments(
@@ -81,7 +81,7 @@ CREATE TABLE IF NOT EXISTS  comments_likes(
 );
 
 
---  choose view by region
+--  choose view by regions
 
 --  organize by most recent 
 --  organize by most pos
