@@ -2,23 +2,37 @@ Check List SQL QUERIES:
 
 Get all Posts WHERE RID= ORDER BY
 	-->(pid, content, comments, pos, neg)
-
+SELECT pid, content, comments, pos, neg
+FROM posts
+WHERE rid = %s 
+ORDER BY %s ;
 
 
 Get all posts/comments where uid= order by by ts
 	-->
+SELECT *
+FROM posts
+WHERE uid= %s
+ORDER BY ts;
 
-
+SELECT *
+FROM comments
+WHERE uid = %s
+ORDER BY ts;
 
 Get all comments where pid= order by ts
 	-->(cid, content, pos, neg)
-
-
+SELECT cid, content, pos, neg
+FROM comments
+where pid = %s
+ORDER BY ts;
 
 Get individual post were pid = 
 	-->(pid, content, pos, neg)
-
-
+SELECT pid, content, pos, neg
+FROM posts
+WHERE pid= %s
+ORDER BY ts;
 
 Add comment/post...(/user?)
 	--> what do we need?
@@ -26,3 +40,7 @@ Add comment/post...(/user?)
 
 Get all users
 	-->(uid)
+SELECT uid
+FROM users
+where 1=1
+ORDER BY uid;
