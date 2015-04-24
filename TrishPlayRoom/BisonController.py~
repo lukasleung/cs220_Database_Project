@@ -19,7 +19,7 @@ if __name__ == "__main__":
 				printLoggedInDisplayAllPost()
 			else:
 				printSortTopBar()
-				print_posts_from_region_not_logged_in(posts)
+				print_posts_from_region(posts)
 				printLoggedInDisplayAllPost()
 		if user_viewing_one_post:
 			if user_is_in_their_region:
@@ -43,7 +43,7 @@ if __name__ == "__main__":
 			printToLogIn()
 		if user_viewing_all_posts:
 			printSortTopBar()
-			print_posts_from_region_not_logged_in(posts)
+			print_posts_from_region(posts)
 			printLoggedOutDisplayAllPost()
 		else if user_viewing_one_post:
 			printPlainTopBar()

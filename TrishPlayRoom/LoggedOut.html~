@@ -26,8 +26,8 @@
 					<div id="pcb"> <!--post_comment_block-->
 						<div class="l_d_buttons">	<!-- UPDATE PROPER TABLES AND RELOAD PAGE? -->
 							<FORM METHOD="POST">
-									<button type=submit name="cannot_like" value="like" >+ "value" </button> </br>
-									<button type=submit name="cannot_down" value="dislike">-  "value" </button>
+									<button type=submit id="cannot_like" value="like" >+ "value" </button> </br>
+									<button type=submit id="cannot_down" value="dislike">-  "value" </button>
 							</FORM>
 						</div>
 						<div class="p_c"> <!-- THESE WILL TAKE YOU TO THE POST PAGE WHERE WE WILL DISPLAY THE POST AND COMMENTS AFFILIATED -->

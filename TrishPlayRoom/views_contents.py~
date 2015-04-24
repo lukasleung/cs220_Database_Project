@@ -122,8 +122,8 @@ def print_all_users(users):
 	print """
 				<table class="user_table">
 					<tr>
- 						<td><u><b>User-Id</b></u></font></td>
-						<td><u><b>Region</b></u></font></td>
+ 						<td><b>User-Id</b></font></td>
+						<td><b>Region</b></font></td>
 					</tr>
 					<tr>
 						<a href=?userid=admin><td>Admin</td></a>
