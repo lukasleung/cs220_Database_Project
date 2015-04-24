@@ -52,3 +52,40 @@ SELECT uid
 FROM users
 where 1=1
 ORDER BY uid;
+
+-- List posts most controversial
+SELECT *
+FROM posts
+WHERE pos+neg!=0
+ORDER BY abs((1/16)-(power((pos/(pos+neg)),3)+ power((neg/(pos+neg)),3)));
+
+-- Profile Page user info
+SELECT uid, rid, pos, neg
+FROM users
+where uid= %s ;
+
+-- Profile page get posts
+SELECT pid
+FROM posts
+where uid = %s ;
+
+-- Profile page count posts
+SELECT count(pid)
+FROM posts
+where uid = %s ;
+
+-- Profile get all regions
+SELECT rid, location
+From regions
+Where 1=1;
+
+-- Profile Page get comments
+SELECT pid, content, pos, neg
+FROM comments
+WHERE cid = %s ;
+
+-- Profile Page, count comments
+SELECT count(cid)
+FROM comments
+WHERE uid = %s ;
+
