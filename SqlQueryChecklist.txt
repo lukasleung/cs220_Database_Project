@@ -6,7 +6,13 @@ SELECT pid, content, comments, pos, neg
 FROM posts
 WHERE rid = %s 
 ORDER BY %s ;
+-- comments, pos, neg, pos+neg, 
+-- controversial: abs((1/16)-(power((pos/(pos+neg)),3)+ power((neg/(pos+neg)),3)));
 
+-- Get Login page
+SELECT uid, location
+FROM users, regions
+WHERE users.rid=regions.rid;
 
 -- Get all posts/comments where uid= order by by ts
 -- 	-->
