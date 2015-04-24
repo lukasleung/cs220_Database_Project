@@ -22,34 +22,18 @@
 			<div class="colleft">
 				<div class="col1">
 
-<!-- TEXT FEILD -->
-					<div id="my_pc"> 
-						<h2> Whats on your mind? </h2>
-						<FORM align="center" action="" value=postContents>
-							<textarea name="textBox"> </textarea>
-						</FORM>
-						<FORM METHOD="POST" action="----.py">							
-								<input name="writePost" value="Post" type="submit">					
-						</FORM>
-							<br>	
-					</div>
-<!-- END -->
-
-
-<!-- THIS IS ONE EXAMPLE OF A POST/COMMENT -->
-					<div id="pcb"> <!--post_comment_block-->
-						<div class="l_d_buttons">	<!-- UPDATE PROPER TABLES AND RELOAD PAGE? -->
-							<FORM METHOD="POST">
-									<button type=submit id="like" value="like" >+ "value" </button> </br>
-									<button type=submit id="down" value="dislike">-  "value" </button>
-							</FORM>
-						</div>
-						<div class="p_c"> <!-- THESE WILL TAKE YOU TO THE POST PAGE WHERE WE WILL DISPLAY THE POST AND COMMENTS AFFILIATED -->
-							<a href="./----.py?pid= + pid + "> <p class=post> + post(contents) + </p> </a>						
-							<a href="./----.py?pid= + pid + "> <p class="comment"> + post(numComments) + comment(s) </p> </a>
-						</div>
-						<hr>
-					</div>
+<!-- START USER TABLE -->
+				<table class="user_table">
+					<tr>
+ 						<td><b>User-Id</b></font></td>
+					</tr>
+					<tr>
+						<a href=?userid=admin><td>Admin</td></a>
+					</tr>
+					<tr>
+						<a href=?userid=+uid+><td> + uid +</td></a>
+					</tr>	
+				</table>
 <!-- END -->
 
 				</div> <!-- close col1 -->

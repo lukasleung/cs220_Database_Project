@@ -112,7 +112,7 @@ h3{
 	margin:0;
 }
 
-/* Post and Comment Stuff */
+/* Post and Comment Stuff for displaying all posts page */
 #my_pc {
 	padding: 1%;
 	color: #66CCFF;
@@ -151,4 +151,43 @@ textarea {
 	height: 100px;
 	resize: none;
 	maxlength: 140;
+}
+
+/* Post and comment stuff for displaying one post */
+.indv_post{
+	color: #66CCFF;
+	font-size: 20px;
+}
+#comment_txt{
+	font-size: 18px;
+	background-color: #FFFFFF;
+	color: black;
+	border: 2px double orange;
+	width: 450px;
+	height: 75px;
+	resize: none;
+	maxlength: 140;
+}
+#leave_comment{
+	color:orange;
+	font-family:"lucida grande",tahoma,verdana,arial,sans-serif;
+	padding: 1%;
+}
+.in_comment{
+	color: orange;
+	padding-left: 20px;
+}
+
+/* Adding a user? */
+.user_table{
+	background-color: #fff;
+	padding: 10%;
+	font-size: 14px;
+}
+.user_table td{
+	font-size: 20px;
+	background-color: #CC99FF;
+	border: 2px solid #e2e2e2;
+	padding: 3px;
+	color:white;
 }

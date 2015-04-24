@@ -22,11 +22,25 @@
 			<div class="colleft">
 				<div class="col1">
 
+<!-- THE POST -->
+					<div>
+						<div class="l_d_buttons">
+							<FORM METHOD="POST">
+									<button type=submit id="like" value=pid">+" pos + """ </button> </br>
+									<button type=submit id="down" value=pid">-" neg + """ </button>
+							</FORM>
+						</div>
+						<div class="p_c"> 
+							<p class=indv_post>""" post(content) + """</p>					
+						</div>
+					</div>
+<!-- END -->
+
 <!-- TEXT FEILD -->
-					<div id="my_pc"> 
-						<h2> Whats on your mind? </h2>
+					<div id="leave_comment"> 
+						<h4> leave a comment </h4>
 						<FORM align="center" action="" value=postContents>
-							<textarea name="textBox"> </textarea>
+							<textarea id=comment_txt name="comment_contents"> </textarea>
 						</FORM>
 						<FORM METHOD="POST" action="----.py">							
 								<input name="writePost" value="Post" type="submit">					
@@ -35,22 +49,24 @@
 					</div>
 <!-- END -->
 
-
-<!-- THIS IS ONE EXAMPLE OF A POST/COMMENT -->
+<!-- THIS IS ONE EXAMPLE OF A COMMENT -->
 					<div id="pcb"> <!--post_comment_block-->
-						<div class="l_d_buttons">	<!-- UPDATE PROPER TABLES AND RELOAD PAGE? -->
+						<div class="l_d_buttons">
 							<FORM METHOD="POST">
 									<button type=submit id="like" value="like" >+ "value" </button> </br>
 									<button type=submit id="down" value="dislike">-  "value" </button>
 							</FORM>
 						</div>
-						<div class="p_c"> <!-- THESE WILL TAKE YOU TO THE POST PAGE WHERE WE WILL DISPLAY THE POST AND COMMENTS AFFILIATED -->
-							<a href="./----.py?pid= + pid + "> <p class=post> + post(contents) + </p> </a>						
-							<a href="./----.py?pid= + pid + "> <p class="comment"> + post(numComments) + comment(s) </p> </a>
+						<div class="p_c"> 
+							<p class="post in_comment"> + comments(content) + </p>				
 						</div>
 						<hr>
 					</div>
 <!-- END -->
+
+
+
+
 
 				</div> <!-- close col1 -->
 				<div class="col2">

@@ -21,18 +21,23 @@
 		<div class="colmask leftmenu">
 			<div class="colleft">
 				<div class="col1">
-<!-- THIS IS ONE EXAMPLE -->
-					<div id="pcb">
+
+<!-- THIS IS ONE EXAMPLE OF A POST/COMMENT -->
+					<div id="pcb"> <!--post_comment_block-->
 						<div class="l_d_buttons">	<!-- UPDATE PROPER TABLES AND RELOAD PAGE? -->
-						
+							<FORM METHOD="POST">
+									<button type=submit id="like" value="like" >+ "value" </button> </br>
+									<button type=submit id="down" value="dislike">-  "value" </button>
+							</FORM>
 						</div>
 						<div class="p_c"> <!-- THESE WILL TAKE YOU TO THE POST PAGE WHERE WE WILL DISPLAY THE POST AND COMMENTS AFFILIATED -->
-							<a href="./----.py?pid= + pid + "> <p> + post(contents) + </p> </a>						
+							<a href="./----.py?pid= + pid + "> <p class=post> + post(contents) + </p> </a>						
 							<a href="./----.py?pid= + pid + "> <p class="comment"> + post(numComments) + comment(s) </p> </a>
 						</div>
 						<hr>
 					</div>
-<!-- THIS IS ONE EXAMPLE -->
+<!-- END -->
+
 			</div>
 
 			<div class="col2">
