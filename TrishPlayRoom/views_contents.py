@@ -5,7 +5,7 @@ print "Content-Type: text/html"
 def print_posts_from_region(posts):
 	# print out each post, likes number of comments
 	for row in posts:
-		(pid, content, comments, pos, neg) = posts
+		(pid, content, comments, pos, neg) = row
 		print """
 						<div id="pcb"> <!--post_comment_block-->
 							<div class="l_d_buttons">	<!-- UPDATE PROPER TABLES AND RELOAD PAGE? -->
@@ -30,7 +30,7 @@ def print_posts_from_region(posts):
 def print_posts_from_region_not_logged_in(posts):
 	# print out each post, likes number of comments
 	for row in posts:
-		(pid, content, comments, pos, neg) = posts
+		(pid, content, comments, pos, neg) = row
 		print """
 						<div id="pcb"> <!--post_comment_block-->
 							<div class="l_d_buttons">	<!-- UPDATE PROPER TABLES AND RELOAD PAGE? -->
@@ -103,7 +103,7 @@ def print_comment_on_box():
 # print out all the comments associated with a single post
 def print_all_comments(comments):
 	for row in comments
-		(cid, content, pos, neg) = comments
+		(cid, content, pos, neg) = row
 		print """
 					<div id="pcb"> <!--post_comment_block-->
 						<div class="l_d_buttons">
@@ -130,7 +130,37 @@ def print_all_users(users):
 						<td>N/A</td>
 					</tr>"""
 	for row in users
-		(uid, region_name) = users
+		(uid, region_name) = row
 		print "<tr>	<a href=?userid=" + uid + "><td>" + uid + "</td></a>"
 		print "<td>" + region_name + "</td> </tr>"
 	print "</table>"
+
+# Print out the user profile page
+# 	Single row for each one (fetch one)
+def print_user_profile(user, num_posts, regions, num_comments)
+	(uid, urid, pos, neg) = user
+	num_p = num_posts[0]
+	num_c = num_comments[0]
+	print "<div id=pos_neg><p>Total:  "+ pos + "up votes, " + neg +""" down votes </p>
+					<hr>
+				</div>
+
+
+				<div id=profile_container>
+					<a href=?uid=""" + uid + """><p> My Posts (""" + num_posts + """) </p></a>
+					<FORM method=POST action=BisonController.py>
+						<SELECT name=newRegion>"""
+	for row in regions:
+		(rid, location) = row
+		if rid == urid:
+			print "<option select=selected value=old>" + location + "</opion>"
+		else:	
+			print "<option value=" + rid + ">" + location + "</opion>"
+
+	print """						
+						</SELECT>
+						<INPUT type="SUBMIT" name="newRegion" value="Change">
+					</FORM>
+					<a href=?uid=""" + uid + """><p> My Comments (""" + num_posts + """)</p></a>
+				</div>
+		"""

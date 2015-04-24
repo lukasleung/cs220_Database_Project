@@ -14,20 +14,25 @@
 		<div class="colleft">
 			<div class="col1">
 
-
-
-<!-- THIS IS ONE EXAMPLE -->
-				<div id="pcb">
-					<div class="l_d_buttons">	<!-- UPDATE PROPER TABLES AND RELOAD PAGE? -->
-						
-					</div>
-					<div class="p_c"> <!-- THESE WILL TAKE YOU TO THE POST PAGE WHERE WE WILL DISPLAY THE POST AND COMMENTS AFFILIATED -->
-						<a href="./----.py?pid= + pid + "> <p> + post(contents) + </p> </a>						
-						<a href="./----.py?pid= + pid + "> <p class="comment"> + post(comment) + </p> </a>
-					</div>
+<!-- User pos/neg -->
+				<div id=pos_neg>
+					<p>Total:  +pos+ up votes, +neg+ down votes </p>
 					<hr>
 				</div>
-<!-- THIS IS ONE EXAMPLE -->
+
+<!-- Main Section -->
+				<div id=profile_container>
+					<a href=?uid=+uid+><p> My Posts (" + num_posts + ") </p></a>
+					<FORM method=POST action=BisonController.py>
+						<SELECT name=newRegion>
+							<option value=+rid+>" + location + "</opion>		
+							<option select=selected value=old>" + selected_location + "</opion>			
+						</SELECT>
+						<INPUT type="SUBMIT" name="newRegion" value="Change">
+					</FORM>
+					<a href=?uid=+uid+><p> My Comments (" + num_posts + ")</p></a>
+				</div>
+<!-- End main seciont -->
 
 
 

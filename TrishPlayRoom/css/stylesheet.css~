@@ -189,4 +189,16 @@ textarea {
 	background-color: #CC99FF;
 	border: 2px solid #e2e2e2;
 	padding: 3px;
+	color:white;
+}
+
+/* User Profile */
+#pos_neg{
+	color: black;
+	font-size: 12px;
+}
+#profile_container{
+	color: black;
+	font-size: 18px;
+	padding: 13%;
 }
