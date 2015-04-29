@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+    <head>
+		<title>Bison Unlimited</title>
+		<link rel="stylesheet" type="text/css" href="css/stylesheet.css" media="screen" />
+    </head>
+    <body>
+		<div id="header">
+			<img src="css/bison.jpg" height=30px width=50px style="float:left;">  <!-- CLICK THIS TO GO TO HOMEPAGE -->
+		    <h3> Bison...Say Something 
+			<FORM method=POST style="float:right;padding-right:12%;">
+				<select name="orderby">
+					<option value="recent">Most Recent</option>
+			  		<option value="positi">Most Positive</option>
+			  		<option value="negati">Most Negative</option>
+			  		<option value="contro">Most Controversial</option>
+				</select> 	
+			</FORM>
+		</div>
+
+		<div class="colmask leftmenu">
+			<div class="colleft">
+				<div class="col1">
+
+<!-- START ADMIN OPTIONS -->
+					<div id=adminfunc>
+						<ul>
+							<li> <b> Who comments more than they post? </b> 
+								<ul>
+									<li>" + str(uid) + " from " + Region.name + "</li>
+									<li>" + str(uid) + " from " + Region.name + "</li>
+									<li>" + str(uid) + " from " + Region.name + "</li>
+									<li>" + str(uid) + " from " + Region.name + "</li>
+								</ul>
+							</li>
+							
+							<li> <b> Who gets more likes from comments as Opposed to Posts </b>
+								<ul>
+									<li>" + str(uid) + " from " + Region.name + "</li>
+									<li>" + str(uid) + " from " + Region.name + "</li>
+									<li>" + str(uid) + " from " + Region.name + "</li>
+									<li>" + str(uid) + " from " + Region.name + "</li>
+								</ul>
+							</li>
+
+							<li> <b> Total number of Up/Down votes for each reagion </b>
+								<ul>
+									<li>" + Region.name + " has " + str(pos) + " Upvotes and " + str(neg) + " Downvotes </li>
+									<li>" + Region.name + " has " + str(pos) + " Upvotes and " + str(neg) + " Downvotes </li>
+									<li>" + Region.name + " has " + str(pos) + " Upvotes and " + str(neg) + " Downvotes </li>
+									<li>" + Region.name + " has " + str(pos) + " Upvotes and " + str(neg) + " Downvotes </li>
+								</ul>
+							</li>
+							<li> 
+								<!-- Need the number of different topics, then do for loop -->
+								<FORM METHOD="POST" action=BisonController.py>
+									<b> Who posts in at least 
+										<select name="numTopics">
+											<option> 1 </option>
+											<option> 2 </option>
+											<option> 3 </option>
+											<option> 4 </option>
+										</select>
+									 Topics </b> 
+									<input type=submit name=minTopic value=Go>
+								</FORM>
+								
+								<ul> At least + numTopics.value + 
+									<li>" + str(uid) + " from " + Region.name + "</li>
+									<li>" + str(uid) + " from " + Region.name + "</li>
+									<li>" + str(uid) + " from " + Region.name + "</li>
+									<li>" + str(uid) + " from " + Region.name + "</li>
+								</ul>
+							</li>
+						</ul>
+					</div>
+<!-- END -->
+
+
+
+				</div> <!-- close col1 -->
+				<div class="col2">
+					<div id="menu">
+						<a href="./----.py"><div class="menuitem">Profile</div></a>
+
+						<FORM METHOD=POST class=menuitem> 
+							Choose A Region 
+							<select name=chooseRegion >
+			  					<option value="NE">New England</option>
+			  					<option value="WC">West Coast</option>
+			  					<option value="BB">Bible Belt</option>
+							</select>
+						</FORM>
+
+						<FORM METHOD=POST class=menuitem> 
+							Choose A Topic
+							<select name=chooseTopic>
+								<option value="ALL">All Topics</option>
+			  					<option value="SW">Sport/Wellness</option>
+			  					<option value="P">Party</option>
+			  					<option value="SC">School</option>
+							</select>
+							
+						</FORM>
+						
+				
+						<a href="./----.py?logout"><div class="menuitem">Logout</div></a>
+						<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+					</div>
+				</div> <!-- close col 2 -->
+
+			</div> <!-- close colleft -->
+		</div> <!-- close colmask leftmenu -->
+
+		<div id="footer">
+			<p>This page shown to people who are logged in</p>
+		</div>
+    </body>
+</html>	

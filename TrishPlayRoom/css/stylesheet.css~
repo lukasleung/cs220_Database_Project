@@ -202,3 +202,15 @@ textarea {
 	font-size: 18px;
 	padding: 13%;
 }
+
+/* Admin Functionality */
+#adminfunc{
+	padding: 10%;
+}
+#adminfunc ul{
+	font-size: 16px;
+	padding-top: 3%;
+}
+#adminfunc ul li{
+	padding-left: 2%;
+}
