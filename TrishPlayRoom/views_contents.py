@@ -1,5 +1,26 @@
 print "Content-Type: text/html"
 
+
+# Prints out all Users
+def print_all_users(users):
+	print """
+				<table class="user_table">
+					<tr>
+ 						<td><u><b>User-Id</b></u></font></td>
+						<td><u><b>Region</b></u></font></td>
+					</tr>
+					<tr>
+						<a href=?userid=admin><td>Admin</td></a>
+						<td>N/A</td>
+					</tr>"""
+	for row in users
+		(uid, rid, region_name) = row
+		print "<tr>	<a href=?userid=" + uid + "><td>" + uid + "</td></a>"
+		print "<td>" + region_name + "</td> </tr>"
+		print "<input type=hidden name=regionid value=" + rid ">
+	print "</table>"
+
+
 # Print posts from a specific region 
 # 	This will work for both logged in users and logged out users
 def print_posts_from_region(posts):
@@ -147,25 +168,6 @@ def print_indv_post_out_region(post, comments):
 							<p class="post in_comment">"""
 		print content + "</p></div><hr></div>"
 
-
-
-# Prints out all Users
-def print_all_users(users):
-	print """
-				<table class="user_table">
-					<tr>
- 						<td><u><b>User-Id</b></u></font></td>
-						<td><u><b>Region</b></u></font></td>
-					</tr>
-					<tr>
-						<a href=?userid=admin><td>Admin</td></a>
-						<td>N/A</td>
-					</tr>"""
-	for row in users
-		(uid, region_name) = row
-		print "<tr>	<a href=?userid=" + uid + "><td>" + uid + "</td></a>"
-		print "<td>" + region_name + "</td> </tr>"
-	print "</table>"
 
 # Print out the user profile page
 # 	Single row for each one (fetch one)
