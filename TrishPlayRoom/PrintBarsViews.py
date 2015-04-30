@@ -20,7 +20,7 @@ def printSortTopBar(uid,rid):
         								<option value="interaction">Most Interaction</option>
        				 				</select>
        				 					<input type=submit name=post> 
-        								<input type=hidden name=userid vaulue=""" +uid+""" >"""
+        								<input type=hidden name=userid value=""" +uid+""" >"""
             				print """ <input type=hidden name=regionid value=""" + rid + """>
                 				</FORM>
                 			</div>
@@ -82,7 +82,7 @@ def printAllPosts():
         </div> <!-- close col1 -->
         	<div class="col2">
         		<div id="menu">
-        			<a href="BisonController.py"><div class="menuitem">Profile</div></a>
+        			<a href="./BisonController.py"><div class="menuitem">Profile</div></a>
         			<a href="BisonController.py"><div class="menuitem">Home</div></a>
         				<FORM METHOD=POST class=menuitem>
         					Choose A Region
@@ -126,8 +126,8 @@ def printInvPosts_Admin():
         </div> <!-- close col1 -->
         	<div class="col2">
         		<div id="menu">
-        			<a href="BisonController.py"><div class="menuitem">Profile</div></a>
-        			<a href="BisonController.py"><div class="menuitem">Home</div></a>
+        			<a href="./BisonController.py"><div class="menuitem">Profile</div></a>
+        			<a href="./BisonController.py"><div class="menuitem">Home</div></a>
         				<FORM METHOD=POST class=menuitem> 
         				Choose A Region 
         					<select name=chooseRegion >
@@ -139,7 +139,7 @@ def printInvPosts_Admin():
         				</FORM>
         
         
-        				<a href="BisonController.py?logout"><div class="menuitem">Logout</div></a>
+        				<a href="./BisonController.py?logout"><div class="menuitem">Logout</div></a>
         <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
         		</div>
         	</div> <!-- close col 2 -->
