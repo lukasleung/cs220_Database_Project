@@ -47,7 +47,7 @@ def print_all_users(users):
     
 # Print posts from a specific region 
 # 	This will work for both logged in users and logged out users
-def print_posts_from_region(posts, uid, rid):
+def print_posts_from_region(posts, uid, rid, pgid):
 	# print text box
 	print """
 					<div id="my_pc"> 
@@ -70,18 +70,27 @@ def print_posts_from_region(posts, uid, rid):
 								<FORM METHOD="POST" action=BisonController.py>
 										<button type=submit name="like" value=""" + str(pid) + ">+ " + str(pos) + """ </button> </br>
 										<button type=submit name="down" value=""" + str(pid) + ">- " + str(neg) + """ </button>
+										<input type=hidden name=user_id value="""+ str(uid) +""">
+										<input type=hidden name=region_id value="""+ str(rid) +""">
+										<input type=hidden name=page_id value=2>
 								</FORM>
 							</div>
 							<div class="p_c">
-								<a href=?pid=""" + str(pid) + "> <p class=post>" + content + """</p> </a>						
-								<a href=./BisonController.py?pid=""" + str(pid) + "> <p class=comment>" + str(comments) + """ comment(s) </p> </a>
+								<form method=post action=BisonController.py>
+									<p> + post(contents) + 
+									<input type=submit name=see_post value="View Post">
+									<input type=hidden name=user_id value=""" + str(uid) + """>
+									<input type=hidden name=region_id value=""" + str(rid) + """>
+									<input type=hidden name=page_id value=""" + str(pgid) + """>
+								</form>				
+								<p class=comment>""" + str(comments) + """ comment(s) </p>
 							</div>
 							<hr>
 						</div>
 			"""
     
     
-def print_posts_from_not_region(posts):
+def print_posts_from_not_region(posts, uid, rid, pgid):
 	# print out each post, likes number of comments
 	for row in posts:
 		(pid, content, comments, pos, neg) = row
@@ -89,24 +98,26 @@ def print_posts_from_not_region(posts):
 						<div id="pcb"> <!--post_comment_block-->
 							<div class="l_d_buttons">	<!-- UPDATE PROPER TABLES AND RELOAD PAGE? -->
 								<FORM METHOD="POST" action=BisonController.py>
-										<button type=submit name="cannot_like" value="""
-		print str(pid) + ">+ " + str(pos) + """ </button> </br>
-										<button type=submit name="cannot_down" value="""
-		print str(pid) + ">- " + str(neg) + """ </button>
+										<button type=submit name="cannot_like" value="""+ str(pid) + ">+ " + str(pos) + """ </button> </br>
+										<button type=submit name="cannot_down" value="""+ str(pid) + ">- " + str(neg) + """ </button>
 								</FORM>
 							</div>
 							<div class="p_c"> <!-- THESE WILL TAKE YOU TO THE POST PAGE WHERE WE WILL DISPLAY THE POST AND COMMENTS AFFILIATED -->
-								<a href="./BisonController.py?pid="""
-		print str(pid) + "> <p class=post>" + content + """</p> </a>						
-								<a href="./BisonController.py?pid="""
-		print str(pid) + "> <p class=comment>" + str(comments) + """ comment(s) </p> </a>
+								<form method=post action=BisonController.py>
+									<p> + post(contents) + 
+									<input type=submit name=see_post value="View Post">
+									<input type=hidden name=user_id value=""" + str(uid) + """>
+									<input type=hidden name=region_id value=""" + str(rid) + """>
+									<input type=hidden name=page_id value=""" + str(pgid) + """>
+								</form>				
+								<p class=comment>""" + str(comments) + """ comment(s) </p>
 							</div>
 							<hr>
 						</div>
 			"""
     
 # print out a single post at the top of the page with options to like or dislike
-def print_indv_post_in_region(post, comments):
+def print_indv_post_in_region(post, comments, uid, rid):
 	# prints out the post
 	(pid, content, pos, neg) = post
     
@@ -114,15 +125,12 @@ def print_indv_post_in_region(post, comments):
 						<div>
 						<div class="l_d_buttons">
 							<FORM METHOD="POST" action=BisonController.py>
-									<button type=submit name="like" value="""
-	print str(pid) + ">+" + str(pos) + """ </button> </br>
-									<button type=submit name="down" value= """
-	print str(pid) + ">-" + str(neg) + """ </button>
+									<button type=submit name="like" value=""" + str(pid) + ">+" + str(pos) + """ </button> </br>
+									<button type=submit name="down" value= """+ str(pid) + ">-" + str(neg) + """ </button>
 							</FORM>
 						</div>
 						<div class="p_c"> 
-							<p class=indv_post>"""
-	print "content should go here" + content + "</p></div></div> "
+							<p class=indv_post>content should go here""" + content + "</p></div></div> "
     	
 	# prints out comment text box
 	print """
@@ -265,6 +273,7 @@ def print_admin_page(comms_more_post, like_comm_more_post, up_down_post, count_t
 	num = int(count_topics[0])
 	for i in range(num):
 		print "<option>" + str(i+1) + "</option>"
+	
 	print """
 										</select>
 									 Topics </b> 
@@ -272,6 +281,7 @@ def print_admin_page(comms_more_post, like_comm_more_post, up_down_post, count_t
 								</FORM>
     								
 								<ul> <u> At least""" + num + """:</u>"""
+	
 	for row in min_topics:
 		(uid, region_name) = row
 		print "<li>" + str(uid) + " from " + Region.name + "</li>"
