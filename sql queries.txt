@@ -1,0 +1,126 @@
+################################## (1) login
+
+# select login
+SELECT uid, rid
+FROM users;
+
+# get all regions
+SELECT rid, location
+FROM regions;
+
+#join users/region
+SELECT uid, users.rid, location
+FROM users, regions
+WHERE users.rid=regions.rid
+
+# create login
+INSERT INTO users (rid)
+VALUES
+(1);
+
+################################## (2)/(5) home page/ posts from region
+
+# get user's information
+SELECT uid, rid
+FROM users;
+
+# get all regions
+SELECT rid, location
+FROM regions;
+
+# posts from region, GIVE rid and ORDER BY
+SELECT pid, pos, neg
+FROM posts
+WHERE posts.rid= %s;
+
+ORDER BY posts.ts;
+ORDER BY posts.comments;
+ORDER BY posts.pos;
+ORDER BY posts.neg;
+ORDER BY posts.pos+posts.neg+posts.comments;
+ORDER BY abs((1/16)-(power((pos/(pos+neg)),3)+ power((neg/(pos+neg)),3)));
+
+# create post
+INSERT INTO posts (uid, content, rid)
+VALUES
+	( %s , %s , %s );
+	
+# upvote post
+INSERT INTO posts_likes (uid, pid, pos, ouid)
+VALUES
+	( %s ,  %s , 1,  %s );
+# downvote post
+INSERT INTO posts_likes (uid, pid, pos, ouid)
+VALUES
+	( %s ,  %s , 0,  %s );
+
+################################## (3)/(6) view individual post
+
+# get user's information
+SELECT uid, rid
+FROM users;
+
+# get all regions
+SELECT rid, location
+FROM regions;
+
+# get post
+SELECT content, ts, rid, comments, pos, neg
+FROM posts
+WHERE posts.pid = %s ;
+
+# create comment
+INSERT INTO comments (pid, uid, content)
+VALUES
+	(1, 2, 'Those were my cookies.'),
+	(2, 4, 'My house smells like coffee');
+
+# upvote post
+INSERT INTO posts_likes (uid, pid, pos, ouid)
+VALUES
+	( %s ,  %s , 1,  %s );
+# downvote post
+INSERT INTO posts_likes (uid, pid, pos, ouid)
+VALUES
+	( %s ,  %s , 0,  %s );
+	
+# upvote comment
+INSERT INTO comments_likes (cid, uid, pos, ouid)
+VALUES
+	( %s , %s , 1,  %s );
+
+# downvote comment
+INSERT INTO comments_likes (cid, uid, pos, ouid)
+VALUES
+	( %s , %s , 0,  %s );
+	
+################################## (4) profile
+-- Profile Page user info
+SELECT uid, rid, pos, neg
+FROM users
+where uid= %s ;
+
+-- Profile page get posts
+SELECT pid
+FROM posts
+where uid = %s ;
+
+-- Profile page count posts
+SELECT count(pid)
+FROM posts
+where uid = %s ;
+
+-- Profile get all regions
+SELECT rid, location
+From regions
+Where 1=1;
+
+-- Profile Page get comments
+SELECT pid, content, pos, neg
+FROM comments
+WHERE cid = %s ;
+
+-- Profile Page, count comments
+SELECT count(cid)
+FROM comments
+WHERE uid = %s ;

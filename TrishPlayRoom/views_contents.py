@@ -1,6 +1,5 @@
-print "Content-Type: text/html"
-
-
+       
+       
 # Prints out all Users
 def print_all_users(users):
 	print """
@@ -10,17 +9,32 @@ def print_all_users(users):
 						<td><u><b>Region</b></u></font></td>
 					</tr>
 					<tr>
-						<a href=?userid=admin><td>Admin</td></a>
+						<td><a href=?userid=admin>Admin</a></td>
 						<td>N/A</td>
 					</tr>"""
-	for row in users
+	for row in users:
 		(uid, rid, region_name) = row
-		print "<tr>	<a href=?userid=" + uid + "><td>" + uid + "</td></a>"
-		print "<td>" + region_name + "</td> </tr>"
-		print "<input type=hidden name=regionid value=" + rid ">
-	print "</table>"
-
-
+		print "<tr><td>	<a href=?userid=" + str(uid) + "&regionid=" +str(rid) +">" + str(uid) + "</a></td>"
+		print "<td>" + region_name + "</td>"
+		
+	print """					<FORM METHOD=post ACTION=BisonController.py>
+						<tr>
+							<td></td>
+							
+							<td>
+								<select name=regionChosen >
+				  					<option value="1">Under Where?</option>
+				  					<option value="3">Over There</option>
+				  					<option value="2">Outside Your Window</option>
+								</select>
+								<INPUT TYPE="submit" NAME="newUserPress" VALUE="Add Me">
+							</td>
+						</tr>
+					</FORM>
+				</table>
+	"""
+    
+    
 # Print posts from a specific region 
 # 	This will work for both logged in users and logged out users
 def print_posts_from_region(posts):
@@ -43,23 +57,19 @@ def print_posts_from_region(posts):
 						<div id="pcb"> <!--post_comment_block-->
 							<div class="l_d_buttons">
 								<FORM METHOD="POST" action=BisonController.py>
-										<button type=submit name="like" value="""
-		print str(pid) + ">+ " + str(pos) + """ </button> </br>
-										<button type=submit name="down" value="""
-		print str(pid) + ">- " + str(neg) + """ </button>
+										<button type=submit name="like" value=""" + str(pid) + ">+ " + str(pos) + """ </button> </br>
+										<button type=submit name="down" value=""" + str(pid) + ">- " + str(neg) + """ </button>
 								</FORM>
 							</div>
 							<div class="p_c">
-								<a href="./BisonController.py?pid="""
-		print str(pid) + "> <p class=post>" + content + """</p> </a>						
-								<a href="./BisonController.py?pid="""
-		print str(pid) + "> <p class=comment>" + str(commets) + """ comment(s) </p> </a>
+								<a href=?pid=""" + str(pid) + "> <p class=post>" + content + """</p> </a>						
+								<a href=./BisonController.py?pid=""" + str(pid) + "> <p class=comment>" + str(comments) + """ comment(s) </p> </a>
 							</div>
 							<hr>
 						</div>
 			"""
-
-
+    
+    
 def print_posts_from_not_region(posts):
 	# print out each post, likes number of comments
 	for row in posts:
@@ -78,17 +88,17 @@ def print_posts_from_not_region(posts):
 								<a href="./BisonController.py?pid="""
 		print str(pid) + "> <p class=post>" + content + """</p> </a>						
 								<a href="./BisonController.py?pid="""
-		print str(pid) + "> <p class=comment>" + str(commets) + """ comment(s) </p> </a>
+		print str(pid) + "> <p class=comment>" + str(comments) + """ comment(s) </p> </a>
 							</div>
 							<hr>
 						</div>
 			"""
-
+    
 # print out a single post at the top of the page with options to like or dislike
 def print_indv_post_in_region(post, comments):
 	# prints out the post
 	(pid, content, pos, neg) = post
-
+    
 	print """
 						<div>
 						<div class="l_d_buttons">
@@ -101,8 +111,8 @@ def print_indv_post_in_region(post, comments):
 						</div>
 						<div class="p_c"> 
 							<p class=indv_post>"""
-	print content + "</p></div></div> "
-	
+	print "content should go here" + content + "</p></div></div> "
+    	
 	# prints out comment text box
 	print """
 					<div id="leave_comment"> 
@@ -115,9 +125,9 @@ def print_indv_post_in_region(post, comments):
 						</FORM>
 							<br>	
 					</div>"""
-
+    
 	# print out all comments
-	for row in comments
+	for row in comments:
 		(cid, content, pos, neg) = row
 		print """
 					<div id="pcb"> <!--post_comment_block-->
@@ -131,13 +141,13 @@ def print_indv_post_in_region(post, comments):
 						<div class="p_c"> 
 							<p class="post in_comment">"""
 		print content + "</p></div><hr></div>"
-
-
+    
+    
 # print out a single post at the top of the page with options to like or dislike
 def print_indv_post_out_region(post, comments):
 	# prints out the post
 	(pid, content, pos, neg) = post
-
+    
 	print """
 						<div>
 						<div class="l_d_buttons">
@@ -151,9 +161,9 @@ def print_indv_post_out_region(post, comments):
 						<div class="p_c"> 
 							<p class=indv_post>"""
 	print content + "</p></div></div> "
-
+    
 	# print out all comments
-	for row in comments
+	for row in comments:
 		(cid, content, pos, neg) = row
 		print """
 					<div id="pcb"> <!--post_comment_block-->
@@ -167,8 +177,8 @@ def print_indv_post_out_region(post, comments):
 						<div class="p_c"> 
 							<p class="post in_comment">"""
 		print content + "</p></div><hr></div>"
-
-
+    
+    
 # Print out the user profile page
 # 	Single row for each one (fetch one)
 def print_user_profile(user, num_posts, regions, num_comments):
@@ -178,8 +188,8 @@ def print_user_profile(user, num_posts, regions, num_comments):
 	print "<div id=pos_neg><p>Total:  "+ pos + "up votes, " + neg +""" down votes </p>
 					<hr>
 				</div>
-
-
+    
+    
 				<div id=profile_container>
 					<a href=?uid=""" + uid + """><p> My Posts (""" + num_posts + """) </p></a>
 					<FORM method=POST action=BisonController.py>
@@ -190,7 +200,7 @@ def print_user_profile(user, num_posts, regions, num_comments):
 			print "<option select=selected value=old>" + location + "</opion>"
 		else:	
 			print "<option value=" + rid + ">" + location + "</opion>"
-
+    
 	print """						
 						</SELECT>
 						<INPUT type="SUBMIT" name="newRegion" value="Change">
@@ -198,7 +208,7 @@ def print_user_profile(user, num_posts, regions, num_comments):
 					<a href=?uid=""" + uid + """><p> My Comments (""" + num_posts + """)</p></a>
 				</div>
 		"""
-
+    
 # Display Admin Page with functionallities already inputted
 # 	takes (tuple, tuple, tuple, number, tuple)
 def print_admin_page(comms_more_post, like_comm_more_post, up_down_post, count_topics, min_topics):
@@ -211,28 +221,28 @@ def print_admin_page(comms_more_post, like_comm_more_post, up_down_post, count_t
 	for row in comms_more_post:
 		(uid, region_name) = row
 		print "<li>" + str(uid) + " from " + region_name + "</li>"
-
+    
 	print """					</ul>
 							</li>
-							
+    							
 							<li> <b> Who gets more likes from comments as opposed to posts </b>
 								<ul> """
 	# print out all people who get more likes from comments vs. posts
 	for row in like_comm_more_post:
 		(uid, region_name) = row
 		print "<li>" + str(uid) + " from " + region_name + "</li>"
-
+    
 	print """					</ul>
 							</li>
-
+    
 							<li> <b> Total number of Up/Down votes for each reagion </b>
 								<ul>"""
-	
+    	
 	# print out all regions with their total up/down values
 	for row in up_down_region:
 		(region_name, pos, neg) = row
 		print "<li>" + region_name + " has " + str(pos) + " Upvotes and " + str(neg) + " Downvotes </li>"
-
+    
 	print """					</ul>
 							</li>
 							<li> 
@@ -249,12 +259,12 @@ def print_admin_page(comms_more_post, like_comm_more_post, up_down_post, count_t
 									 Topics </b> 
 									<input type=submit name=minTopic value=Go>
 								</FORM>
-								
+    								
 								<ul> <u> At least""" + num + """:</u>"""
 	for row in min_topics:
 		(uid, region_name) = row
 		print "<li>" + str(uid) + " from " + Region.name + "</li>"
-
+    
 	print """					</ul>
 							</li>
 						</ul>
