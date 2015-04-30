@@ -78,7 +78,7 @@ def printAllPosts(uid, rid, pgid):
         			<FORM >
         				<input  type=submit name=post value="Profile"> 
 						<input type=hidden name=user_id value="""+ str(uid) +""">
-						<input type=hidden name=user_id value="""+ str(rid) +""">
+						<input type=hidden name=region_id value="""+ str(rid) +""">
 						<input type=hidden name=page_id value=4> 
         			</FORM>
         			
@@ -87,7 +87,7 @@ def printAllPosts(uid, rid, pgid):
         			<FORM >
         				<input type=submit name=post value="Home"> 	
 						<input type=hidden name=user_id value="""+ str(uid) +""">
-						<input type=hidden name=user_id value="""+ str(rid) +""">
+						<input type=hidden name=region_id value="""+ str(rid) +""">
 						<input type=hidden name=page_id value=2> 
         			</FORM>
         		</div> 
@@ -101,7 +101,7 @@ def printAllPosts(uid, rid, pgid):
            		 					</select>
            		 					<input type=submit name=post> 
     								<input type=hidden name=user_id value="""+ str(uid) +""">
-    								<input type=hidden name=user_id value="""+ str(rid) +""">
+    								<input type=hidden name=region_id value="""+ str(rid) +""">
     								
             				</FORM>
         				</div>
@@ -110,7 +110,7 @@ def printAllPosts(uid, rid, pgid):
                                 <FORM >
                                 <input type=submit name=post value="Log Out"> 
 								<input type=hidden name=user_id value="""+ str(uid) +""">
-								<input type=hidden name=user_id value="""+ str(rid) +""">
+								<input type=hidden name=region_id value="""+ str(rid) +""">
 								<input type=hidden name=page_id value=1> 
                                 </FORM>
                                 
