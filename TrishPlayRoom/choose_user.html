@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+    <head>
+		<title>Bison Unlimited</title>
+		<link rel="stylesheet" type="text/css" href="css/stylesheet.css" media="screen" />
+    </head>
+    <body>
+		<div id="header">
+			<img src="css/bison.jpg" height=30px width=50px style="float:left;">  <!-- CLICK THIS TO GO TO HOMEPAGE -->
+		    <h3> Bison...Say Something 
+			<FORM method=POST style="float:right;padding-right:12%;">
+				<select name="orderby">
+					<option value="recent">Most Recent</option>
+			  		<option value="positi">Most Positive</option>
+			  		<option value="negati">Most Negative</option>
+			  		<option value="contro">Most Controversial</option>
+				</select> 	
+			</FORM>
+		</div>
+
+		<div class="colmask leftmenu">
+			<div class="colleft">
+				<div class="col1">
+
+<!-- START USER TABLE -->
+				<table class="user_table">
+					<tr>
+ 						<td><u><b>User-Id</b></u></font></td>
+						<td><u><b>Region</b></u></font></td>
+					</tr>
+					<tr>
+						<td>Admin</td>
+						<td>N/A</td>
+						<td><form method=post action=BisonController.py>
+							<input type=submit name=loginUser value=login>
+							<input type=hidden name=page_id value=7>
+						</form></td>
+					</tr>
+<!-- THIS GETS REITERATED -->
+					<tr>
+						<td> + uid +</td>
+						<td> + region_name + </td>
+						<td><form method=post action=BisonController.py>
+							<input type=submit name=loginUser value=login>
+							<input type=hidden name=user_id value=+uid+>
+							<input type=hidden name=region_id value=+rid+>
+							<input type=hidden name=page_id value=2>
+						</form></td>
+					</tr>	
+<!-- STOP -->
+					<FORM METHOD=post ACTION=BisonController.py>
+						<tr>
+							<td></td>
+							
+							<td>
+								<select name=regionChosen >
+				  					<option value="1">Under Where?</option>
+				  					<option value="3">Over There</option>
+				  					<option value="2">Outside Your Window</option>
+								</select>
+								<INPUT TYPE="submit" NAME="newUserPress" VALUE="Add Me">
+							</td>
+						</tr>
+					</FORM>
+				</table>
+
+<!-- END -->
+
+
+				</div> <!-- close col1 -->
+				<div class="col2">
+					<div id="menu">
+						<a href="./----.py"><div class="menuitem">Profile</div></a>
+
+						<FORM METHOD=POST class=menuitem> 
+							Choose A Region 
+							<select name=chooseRegion >
+			  					<option value="NE">New England</option>
+			  					<option value="WC">West Coast</option>
+			  					<option value="BB">Bible Belt</option>
+							</select>
+						</FORM>
+
+						<FORM METHOD=POST class=menuitem> 
+							Choose A Topic
+							<select name=chooseTopic>
+								<option value="ALL">All Topics</option>
+			  					<option value="SW">Sport/Wellness</option>
+			  					<option value="P">Party</option>
+			  					<option value="SC">School</option>
+							</select>
+							
+						</FORM>
+						
+				
+						<a href="./----.py?logout"><div class="menuitem">Logout</div></a>
+						<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+					</div>
+				</div> <!-- close col 2 -->
+
+			</div> <!-- close colleft -->
+		</div> <!-- close colmask leftmenu -->
+
+		<div id="footer">
+			<p>This page shown to people who are logged in</p>
+		</div>
+    </body>
+</html>	
