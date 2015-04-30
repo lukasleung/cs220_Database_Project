@@ -22,7 +22,7 @@ def printSortTopBar(uid,rid,pgrid):
        				 					<input type=submit name=post> 
         								<input type=hidden name=user_id value="""+ str(uid) +"""
 										<input type=hidden name=region_id value="""+ str(uid) +"""
-										<input type=hidden name=page_id value="""+ str(pgid) + """
+										<input type=hidden name=page_id value="""+ str(pgid) +"""
                 				</FORM>
                 			</div>
                 
@@ -79,7 +79,7 @@ def printAllPosts(uid, rid, pgid):
         				<input  type=submit name=post value="Profile"> 
 						<input type=hidden name=user_id value="""+ str(uid) +"""
 						<input type=hidden name=user_id value="""+ str(uid) +"""
-						<input type=hidden name=page_id value="""+ str(pgid) + """
+						<input type=hidden name=page_id value=4> 
         			</FORM>
         			
         		</div> 
@@ -88,7 +88,7 @@ def printAllPosts(uid, rid, pgid):
         				<input type=submit name=post value="Home"> 	
 						<input type=hidden name=user_id value="""+ str(uid) +"""
 						<input type=hidden name=user_id value="""+ str(uid) +"""
-						<input type=hidden name=page_id value="""+ str(pgid) + """
+						<input type=hidden name=page_id value=2> 
         			</FORM>
         		</div> 
         				<div class=menuitem>
@@ -102,7 +102,7 @@ def printAllPosts(uid, rid, pgid):
            		 					<input type=submit name=post> 
     								<input type=hidden name=user_id value="""+ str(uid) +"""
     								<input type=hidden name=user_id value="""+ str(uid) +"""
-    								<input type=hidden name=page_id value="""+ str(pgid) + """
+    								
             				</FORM>
         				</div>
         				
@@ -111,7 +111,7 @@ def printAllPosts(uid, rid, pgid):
                                 <input type=submit name=post value="Log Out"> 
 								<input type=hidden name=user_id value="""+ str(uid) +"""
 								<input type=hidden name=user_id value="""+ str(uid) +"""
-								<input type=hidden name=page_id value="""+ str(pgid) + """
+								<input type=hidden name=page_id value=1> 
                                 </FORM>
                                 
                           </div>       
