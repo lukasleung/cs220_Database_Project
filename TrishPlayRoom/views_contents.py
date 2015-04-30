@@ -105,7 +105,7 @@ def print_posts_from_not_region(posts, uid, rid):
 							</div>
 							<div class="p_c"> <!-- THESE WILL TAKE YOU TO THE POST PAGE WHERE WE WILL DISPLAY THE POST AND COMMENTS AFFILIATED -->
 								<form method=post action=BisonController.py>
-									<p> + post(contents) + 
+									<p> """ + content + """
 									<input type=submit name=see_post value="View Post">
 									<input type=hidden name=user_id value=""" + str(uid) + """>
 									<input type=hidden name=region_id value=""" + str(rid) + """>
@@ -126,8 +126,8 @@ def print_indv_post_in_region(post, comments, uid, rid):
 						<div>
 						<div class="l_d_buttons">
 							<FORM METHOD="POST" action=BisonController.py>
-									<button type=submit name="like" value=""" + str(pid) + ">+" + str(pos) + """ </button> </br>
-									<button type=submit name="down" value= """+ str(pid) + ">-" + str(neg) + """ </button>
+									<button type=submit name=post_like value=""" + str(pid) + ">+" + str(pos) + """ </button> </br>
+									<button type=submit name=post_down value= """+ str(pid) + ">-" + str(neg) + """ </button>
 									<input type=hidden name=user_id value=""" + str(uid) + """>
 									<input type=hidden name=region_id value=""" + str(rid) + """>
 									<input type=hidden name=page_id value=3>
@@ -142,7 +142,7 @@ def print_indv_post_in_region(post, comments, uid, rid):
 						<h4> leave a comment </h4>
 						<FORM Method=POST action="BisonController.py" value=postContents>
 							<textarea id=comment_txt name="comment_contents" value=""> </textarea>							
-							<input name="write_comment" value="Comment" type="submit">	
+							<input type="submit" name="write_comment" value="Comment">	
 							<input type=hidden name=user_id value="""+ str(uid) +""">
 							<input type=hidden name=region_id value="""+ str(rid) +""">
 							<input type=hidden name=page_id value=3>
@@ -156,8 +156,11 @@ def print_indv_post_in_region(post, comments, uid, rid):
 					<div id="pcb"> <!--post_comment_block-->
 						<div class="l_d_buttons">
 							<FORM METHOD="POST" action=BisonController.py>
-									<button type=submit name="like" value="""+ str(cid) + " >+ " + str(pos) + """ </button> </br>
-									<button type=submit name=down value="""+ str(cid) + " >- " + str(neg) + """ </button>
+								<button type=submit name=comment_like value="""+ str(cid) + " >+ " + str(pos) + """ </button> </br>
+								<button type=submit name=comment_down value="""+ str(cid) + " >- " + str(neg) + """ </button>
+								<input type=hidden name=user_id value="""+ str(uid) +""">
+								<input type=hidden name=region_id value="""+ str(rid) +""">
+								<input type=hidden name=page_id value=3>
 							</FORM>
 						</div>
 						<div class="p_c"> 
