@@ -4,22 +4,14 @@ import MySQLdb as db
 #filename = "university.db"
 # conn = db.connect(filename)
 
-
-# deletes and recreates the database
-def remove_tables():
-    pass
-
-def create_tables():
-#     create tables
-#     create triggers
-    pass
-
-def insert_dummy():
-    pass
-
-def login_page():
+############################################################
+def dbCursor():
     conn = db.connect("localhost", "niwamoto", "niwamoto", "niwamoto")
     cursor = conn.cursor()
+    return conn, cursor
+############################################################
+def login_page():
+    conn, cursor = dbCursor()
     sql = """SELECT uid, users.rid, location
             FROM users, regions
             WHERE users.rid=regions.rid
@@ -30,10 +22,9 @@ def login_page():
     cursor.close()
     conn.close()
     return posts
-
+############################################################
 def add_user(rid):
-    conn = db.connect("localhost", "niwamoto", "niwamoto", "niwamoto")
-    cursor = conn.cursor()
+    conn, cursor = dbCursor()
     sql = """INSERT INTO users (rid)
             VALUES
             ( %s );"""
@@ -42,37 +33,36 @@ def add_user(rid):
     conn.commit()
     cursor.close()
     conn.close()
-    
+############################################################
 def posts_region(rid, order_rule="recent"):
-    conn = db.connect("localhost", "niwamoto", "niwamoto", "niwamoto")
-    cursor = conn.cursor()
+    conn, cursor = dbCursor()
     sql = """SELECT pid, content, comments, pos, neg
             FROM posts
-            WHERE posts.rid= %s"""
+            WHERE posts.rid= %s """
     if order_rule == "recent":
-        sql+= "ORDER BY posts.ts DESC;"
+        sql+= " ORDER BY posts.ts DESC;"
     elif order_rule == "positive":
-        sql+= "ORDER BY posts.pos DESC;"
+        sql+= " ORDER BY posts.pos DESC;"
     elif order_rule == "negative":
-        sql+= "ORDER BY posts.neg DESC;"
+        sql+= " ORDER BY posts.neg DESC;"
     elif order_rule == "controversial": 
-        sql+= "ORDER BY abs((1/16)-(power((pos/(pos+neg)),3)+ power((neg/(pos+neg)),3)));"
+        sql+= " and posts.pos+posts.neg !=0 "
+        sql+= " ORDER BY abs((1/16)-(power((pos/(pos+neg)),3)+ power((neg/(pos+neg)),3)));"
     elif order_rule == "comments":
-        sql+= "ORDER BY posts.comments DESC;"
+        sql+= " ORDER BY posts.comments DESC;"
     elif order_rule == "interaction":
-        sql+= "ORDER BY posts.pos+posts.neg+posts.comments DESC;"
+        sql+= " ORDER BY posts.pos+posts.neg+posts.comments DESC;"
     else:
-        sql+= "ORDER BY posts.ts DESC;"
+        sql+= " ORDER BY posts.ts DESC;"
     params = (rid, )
     cursor.execute(sql, params)
     posts = cursor.fetchall()
     cursor.close()
     conn.close()
     return posts
-    
+############################################################
 def create_post(uid, content, rid):
-    conn = db.connect("localhost", "niwamoto", "niwamoto", "niwamoto")
-    cursor = conn.cursor()
+    conn, cursor = dbCursor()
     sql = """INSERT INTO posts (uid, content, rid)
             VALUES
             ( %s ,  %s , %s );"""
@@ -81,4 +71,91 @@ def create_post(uid, content, rid):
     conn.commit()
     cursor.close()
     conn.close()
-    
+
+############################################################
+def get_ouid(pid):
+    conn, cursor = dbCursor()
+    sql = """SELECT uid
+            FROM posts
+            WHERE posts.pid= %s """
+    params = (pid, )
+    cursor.execute(sql, params)
+    ouid = cursor.fetchone()
+    cursor.close()
+    conn.close()
+    return ouid
+############################################################
+def update_post_like(pos, uid, pid):
+    conn, cursor = dbCursor()
+    sql = """UPDATE posts_likes 
+            SET posts_likes.pos = %s 
+            WHERE posts_likes.uid = %s and posts_likes.pid = %s ;"""
+    params = (pos, uid, pid)
+    cursor.execute(sql, params)
+    conn.commit()
+    cursor.close()
+    conn.close()
+############################################################
+def count_post_likes(pid):
+    conn, cursor = dbCursor()
+    sql ="""select count(pos)
+        from posts_likes
+        where pid= %s  """
+    params = (pid, )
+    cursor.execute(sql, params)
+    ouid = cursor.fetchone()
+    cursor.close()
+    conn.close()
+    return ouid
+############################################################
+def check_post_like(uid,pid):
+    conn, cursor = dbCursor()
+    sql = """Select pos
+            From posts_likes
+            where uid=  %s  and pid= %s """
+    params = (uid,pid)
+    cursor.execute(sql, params)
+    pos = cursor.fetchone()
+    cursor.close()
+    conn.close()
+#     return whether pos or neg
+    return pos
+
+############################################################
+def create_post_like(uid, pid, pos, ouid):
+    conn, cursor = dbCursor()
+    sql = """INSERT INTO posts_likes (uid, pid, pos, ouid)
+            VALUES
+            ( %s ,  %s ,  %s , %s );"""
+    print "<p> LIKING A POST "
+    params = (uid, pid, pos, ouid)
+    cursor.execute(sql, params)
+    conn.commit()
+    cursor.close()
+    conn.close()
+
+############################################################
+def get_post(pid):
+    conn, cursor = dbCursor()
+    sql =""" SELECT pid, content, pos, neg
+        FROM posts
+        WHERE posts.pid = %s ;"""
+    params = (pid, )
+    cursor.execute(sql, params)
+    ouid = cursor.fetchone()
+    cursor.close()
+    conn.close()
+    return ouid
+
+############################################################
+def get_comments(pid):
+    conn, cursor = dbCursor()
+    sql =""" SELECT cid, content, pos, neg
+        FROM comments
+        WHERE pid = %s ;"""
+    params = (pid, )
+    cursor.execute(sql, params)
+    ouid = cursor.fetchall()
+    cursor.close()
+    conn.close()
+    return ouid

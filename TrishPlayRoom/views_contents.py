@@ -77,8 +77,9 @@ def print_posts_from_region(posts, uid, rid):
 							</div>
 							<div class="p_c">
 								<form method=post action=BisonController.py>
-									<p> + post(contents) + 
+									<p>""" + content + """
 									<input type=submit name=see_post value="View Post">
+									<input type=hidden name=post_id value=""" + str(pid) + """>
 									<input type=hidden name=user_id value=""" + str(uid) + """>
 									<input type=hidden name=region_id value=""" + str(rid) + """>
 									<input type=hidden name=page_id value=3>
