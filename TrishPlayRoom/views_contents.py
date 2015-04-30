@@ -17,7 +17,7 @@ def print_all_users(users):
 
 	for row in users:
 		(uid, rid, region_name) = row
-		print "<tr><td>" str(uid) + "</td>"
+		print "<tr><td>" + str(uid) + "</td>"
 		print "<td>" + region_name + "</td>"
 		print """<td><form method=post action=BisonController.py>
 							<input type=submit name=loginUser value=login>
@@ -26,7 +26,7 @@ def print_all_users(users):
 							<input type=hidden name=page_id value=2>
 						</form></td> </tr>"""
 		
-	print """					<FORM METHOD=post ACTION=BisonController.py>
+	print """		<FORM METHOD=post ACTION=BisonController.py>
 						<tr>
 							<td></td>
 							
@@ -37,6 +37,7 @@ def print_all_users(users):
 				  					<option value="2">Outside Your Window</option>
 								</select>
 								<INPUT TYPE="submit" NAME="newUserPress" VALUE="Add Me">
+								<input type=hidden name=page_id value=1>
 							</td>
 						</tr>
 					</FORM>

@@ -30,7 +30,7 @@ def printSortTopBar(uid,rid):
         <div class="col1">
 		"""
 
-def printPlainTopBar(uid, rid):
+def printPlainTopBar():
     print """
         <!DOCTYPE html>
         	<html>
