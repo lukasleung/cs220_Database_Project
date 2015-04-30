@@ -15,7 +15,7 @@ def printSortTopBar(uid,rid):
         								<option value="recent">Most Recent</option>
         								<option value="positive">Most Positive</option>
        									<option value="negative">Most Negative</option>
-        								<option value="controvertial">Most Controversial</option>
+        								<option value="controversial">Most Controversial</option>
         								<option value="comments">Most Comments</option>
         								<option value="interaction">Most Interaction</option>
        				 				</select>
@@ -77,30 +77,32 @@ def printAllPosts(uid, rid):
         		<div id="menu">
         			<a href="./BisonController.py"><div class="menuitem">Profile</div></a>
         			<a href="BisonController.py"><div class="menuitem">Home</div></a>
-        				<FORM METHOD=POST action=BisonController.py class=menuitem>
-        					Choose A Region
-       					 		<select name=chooseRegion >
-        							<option value="1">Under Where?</option>
-        							<option value="3">Over There</option>
-        							<option value="2">Outside Your Window</option>
-       		 					</select>
-       		 					<input type=submit name=post> 
-								<input type=hidden name=user_id value="""+ str(uid) +"""
-								<input type=hidden name=user_id value="""+ str(uid) +"""
-        				</FORM>
-        
-        				<FORM METHOD=POST action=BisonController.py class=menuitem>
-		    				Choose A Topic
-		    				<select name=chooseTopic>
-									<option value="1">Food</option>
-		                            <option value="2">Brandon's Basement</option>
-		                            <option value="3">Coffee</option>
-		                    </select>
-		                    <input type=submit name=post>
-							<input type=hidden name=user_id value="""+ str(uid) +"""
-							<input type=hidden name=user_id value="""+ str(uid) +"""
-                        </FORM>
-                                
+        				<div class=menuitem>
+            				<FORM METHOD=POST action=BisonController.py>
+            					Choose A Region
+           					 		<select name=chooseRegion >
+            							<option value="1">Under Where?</option>
+            							<option value="3">Over There</option>
+            							<option value="2">Outside Your Window</option>
+           		 					</select>
+           		 					<input type=submit name=post> 
+    								<input type=hidden name=user_id value="""+ str(uid) +"""
+    								<input type=hidden name=user_id value="""+ str(uid) +"""
+            				</FORM>
+        				</div>
+        				<div class=menuitem>
+            				<FORM METHOD=POST action=BisonController.py>
+    		    				Choose A Topic
+    		    				<select name=chooseTopic>
+    									<option value="1">Food</option>
+    		                            <option value="2">Brandon's Basement</option>
+    		                            <option value="3">Coffee</option>
+    		                    </select>
+    		                    <input type=submit name=post>
+    							<input type=hidden name=user_id value="""+ str(uid) +"""
+    							<input type=hidden name=user_id value="""+ str(uid) +"""
+                            </FORM>
+                          </div>      
                                 
                                 <a href="BisonController.py?logout"><div class="menuitem">Logout</div></a>
                                 <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>

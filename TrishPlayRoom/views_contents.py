@@ -47,16 +47,17 @@ def print_all_users(users):
     
 # Print posts from a specific region 
 # 	This will work for both logged in users and logged out users
-def print_posts_from_region(posts):
+def print_posts_from_region(posts, uid, rid):
 	# print text box
 	print """
 					<div id="my_pc"> 
 						<h2> Whats on your mind? </h2>
-						<FORM align="center" Method=POST action="BisonController.py" value=postContents>
-							<textarea name="textBox"> </textarea>
-						</FORM>
-						<FORM METHOD="POST" action="BisonController.py">							
-								<input name="writePost" value="Post" type="submit">					
+						<FORM Method=POST action="BisonController.py" value=postContents>
+							<textarea name="textBox" value=""> </textarea>							
+							<input name="writePost" value="Post" type="submit">	
+							<input type=hidden name=user_id value="""+ str(uid) +""">
+							<input type=hidden name=region_id value="""+ str(rid) +""">
+							<input type=hidden name=page_id value=2>				
 						</FORM>
 							<br>	
 					</div> """
