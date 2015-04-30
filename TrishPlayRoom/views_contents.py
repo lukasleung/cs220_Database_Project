@@ -70,6 +70,9 @@ def print_posts_from_region(posts, uid, rid):
 								<FORM METHOD="POST" action=BisonController.py>
 										<button type=submit name="like" value=""" + str(pid) + ">+ " + str(pos) + """ </button> </br>
 										<button type=submit name="down" value=""" + str(pid) + ">- " + str(neg) + """ </button>
+										<input type=hidden name=user_id value="""+ str(uid) +""">
+										<input type=hidden name=region_id value="""+ str(rid) +""">
+										<input type=hidden name=page_id value=2>
 								</FORM>
 							</div>
 							<div class="p_c">

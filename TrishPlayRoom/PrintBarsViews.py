@@ -20,8 +20,9 @@ def printSortTopBar(uid,rid):
         								<option value="interaction">Most Interaction</option>
        				 				</select>
        				 					<input type=submit name=post> 
-        								<input type=hidden name=userid value=""" + str(uid) +""" >
-										<input type=hidden name=regionid value=""" + str(rid) + """>
+        								<input type=hidden name=user_id value=""" + str(uid) +""" >
+										<input type=hidden name=region_id value=""" + str(rid) + """>
+										<input type=hidden name=page_id value=2>
                 				</FORM>
                 			</div>
                 
@@ -87,7 +88,7 @@ def printAllPosts(uid, rid):
            		 					</select>
            		 					<input type=submit name=post> 
     								<input type=hidden name=user_id value="""+ str(uid) +"""
-    								<input type=hidden name=user_id value="""+ str(uid) +"""
+    								<input type=hidden name=region_id value="""+ str(rid) +"""
             				</FORM>
         				</div>
         				<div class=menuitem>
@@ -100,7 +101,7 @@ def printAllPosts(uid, rid):
     		                    </select>
     		                    <input type=submit name=post>
     							<input type=hidden name=user_id value="""+ str(uid) +"""
-    							<input type=hidden name=user_id value="""+ str(uid) +"""
+    							<input type=hidden name=region_id value="""+ str(rid) +"""
                             </FORM>
                           </div>      
                                 
@@ -135,7 +136,7 @@ def printInvPosts(uid, rid):
    		 					</select>
    		 					<input type=submit name=post> 
 							<input type=hidden name=user_id value="""+ str(uid) +"""
-							<input type=hidden name=user_id value="""+ str(uid) +"""
+							<input type=hidden name=region_id value="""+ str(rid) +"""
     				</FORM>
         
         
