@@ -29,13 +29,23 @@
 						<td><u><b>Region</b></u></font></td>
 					</tr>
 					<tr>
-						<a href=?userid=admin><td>Admin</td></a>
+						<td>Admin</td>
 						<td>N/A</td>
+						<td><form method=post action=BisonController.py>
+							<input type=submit name=loginUser value=login>
+							<input type=hidden name=page_id value=7>
+						</form></td>
 					</tr>
 <!-- THIS GETS REITERATED -->
 					<tr>
-						<a href=?userid=+uid+><td> + uid +</td></a>
+						<td> + uid +</td>
 						<td> + region_name + </td>
+						<td><form method=post action=BisonController.py>
+							<input type=submit name=loginUser value=login>
+							<input type=hidden name=user_id value=+uid+>
+							<input type=hidden name=region_id value=+rid+>
+							<input type=hidden name=page_id value=2>
+						</form></td>
 					</tr>	
 <!-- STOP -->
 					<FORM METHOD=post ACTION=BisonController.py>

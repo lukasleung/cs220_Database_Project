@@ -1,5 +1,3 @@
-       
-       
 # Prints out all Users
 def print_all_users(users):
 	print """
@@ -9,13 +7,24 @@ def print_all_users(users):
 						<td><u><b>Region</b></u></font></td>
 					</tr>
 					<tr>
-						<td><a href=?userid=admin>Admin</a></td>
+						<td>Admin</td>
 						<td>N/A</td>
+						<td><form method=post action=BisonController.py>
+							<input type=submit name=loginUser value=login>
+							<input type=hidden name=page_id value=7>
+						</form></td>
 					</tr>"""
+
 	for row in users:
 		(uid, rid, region_name) = row
-		print "<tr><td>	<a href=?userid=" + str(uid) + "&regionid=" +str(rid) +">" + str(uid) + "</a></td>"
+		print "<tr><td>" str(uid) + "</td>"
 		print "<td>" + region_name + "</td>"
+		print """<td><form method=post action=BisonController.py>
+							<input type=submit name=loginUser value=login>
+							<input type=hidden name=user_id value="""+ str(uid) +""">
+							<input type=hidden name=region_id value="""+ str(rid) +""">
+							<input type=hidden name=page_id value=2>
+						</form></td> </tr>"""
 		
 	print """					<FORM METHOD=post ACTION=BisonController.py>
 						<tr>
