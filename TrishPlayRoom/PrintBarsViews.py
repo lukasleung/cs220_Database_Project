@@ -13,15 +13,15 @@ def printSortTopBar(uid,rid):
         						<FORM method=POST style="float:right;padding-right:12%;">
         							<select name="order_by">
         								<option value="recent">Most Recent</option>
-        								<option value="positi">Most Positive</option>
-       									<option value="negati">Most Negative</option>
-        								<option value="contro">Most Controversial</option>
+        								<option value="positive">Most Positive</option>
+       									<option value="negative">Most Negative</option>
+        								<option value="controvertial">Most Controversial</option>
         								<option value="comments">Most Comments</option>
         								<option value="interaction">Most Interaction</option>
        				 				</select>
        				 					<input type=submit name=post> 
-        								<input type=hidden name=userid value=""" +uid+""" >"""
-            				print """ <input type=hidden name=regionid value=""" + rid + """>
+        								<input type=hidden name=userid value=""" + str(uid) +""" >
+										<input type=hidden name=regionid value=""" + str(rid) + """>
                 				</FORM>
                 			</div>
                 
@@ -40,14 +40,8 @@ def printPlainTopBar(uid, rid):
         	</head>
         		<body>
         			<div id="header">
-        			<img src="css/bison.jpg" height=30px width=50px style="float:left;">
-        			<h3> Bison...Say Something
-        				<FORM>
-        					<input type=hidden name=regionid value=""" + rid + """>"""
-            	print """	<input type=hidden name=userid  value="""+ uid + """ >
-                
-            			</FORM>
-                
+		    			<img src="css/bison.jpg" height=30px width=50px style="float:left;">
+		    			<h3> Bison...Say Something
                 	</div>
                 
                 <div class="colmask leftmenu">
@@ -63,8 +57,7 @@ def printBlankSideBar():
         	<div class="col2">
         		<div id="menu">
         
-        <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-        <br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+        <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
         		</div>
         			</div>
         
@@ -77,32 +70,35 @@ def printBlankSideBar():
         </html>
         """
 
-def printAllPosts():
+def printAllPosts(uid, rid):
     print """
         </div> <!-- close col1 -->
         	<div class="col2">
         		<div id="menu">
         			<a href="./BisonController.py"><div class="menuitem">Profile</div></a>
         			<a href="BisonController.py"><div class="menuitem">Home</div></a>
-        				<FORM METHOD=POST class=menuitem>
+        				<FORM METHOD=POST action=BisonController.py class=menuitem>
         					Choose A Region
        					 		<select name=chooseRegion >
-        							<option value="NE">New England</option>
-        							<option value="WC">West Coast</option>
-        							<option value="BB">Bible Belt</option>
+        							<option value="1">Under Where?</option>
+        							<option value="3">Over There</option>
+        							<option value="2">Outside Your Window</option>
        		 					</select>
        		 					<input type=submit name=post> 
+								<input type=hidden name=user_id value="""+ str(uid) +"""
+								<input type=hidden name=user_id value="""+ str(uid) +"""
         				</FORM>
         
-        				<FORM METHOD=POST class=menuitem>
-        				Choose A Topic
-        				<select name=chooseTopic>
-								<option value="ALL">All Topics</option>
-                                <option value="SW">Sport/Wellness</option>
-                                <option value="P">Party</option>
-                                <option value="SC">School</option>
-                        </select>
-                        <input type=submit name=post> 
+        				<FORM METHOD=POST action=BisonController.py class=menuitem>
+		    				Choose A Topic
+		    				<select name=chooseTopic>
+									<option value="1">Food</option>
+		                            <option value="2">Brandon's Basement</option>
+		                            <option value="3">Coffee</option>
+		                    </select>
+		                    <input type=submit name=post>
+							<input type=hidden name=user_id value="""+ str(uid) +"""
+							<input type=hidden name=user_id value="""+ str(uid) +"""
                         </FORM>
                                 
                                 
@@ -121,25 +117,27 @@ def printAllPosts():
         </html>
         """
 
-def printInvPosts_Admin():
+def printInvPosts(uid, rid):
     print """
         </div> <!-- close col1 -->
         	<div class="col2">
         		<div id="menu">
         			<a href="./BisonController.py"><div class="menuitem">Profile</div></a>
         			<a href="./BisonController.py"><div class="menuitem">Home</div></a>
-        				<FORM METHOD=POST class=menuitem> 
-        				Choose A Region 
-        					<select name=chooseRegion >
-        						<option value="NE">New England</option>
-        						<option value="WC">West Coast</option>
-        						<option value="BB">Bible Belt</option>
-        					</select>
-        					<input type=submit name=post> 
-        				</FORM>
+    				<FORM METHOD=POST action=BisonController.py class=menuitem>
+    					Choose A Region
+   					 		<select name=chooseRegion >
+    							<option value="1">Under Where?</option>
+    							<option value="3">Over There</option>
+    							<option value="2">Outside Your Window</option>
+   		 					</select>
+   		 					<input type=submit name=post> 
+							<input type=hidden name=user_id value="""+ str(uid) +"""
+							<input type=hidden name=user_id value="""+ str(uid) +"""
+    				</FORM>
         
         
-        				<a href="./BisonController.py?logout"><div class="menuitem">Logout</div></a>
+    				<a href="./BisonController.py?logout"><div class="menuitem">Logout</div></a>
         <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
         		</div>
         	</div> <!-- close col 2 -->
