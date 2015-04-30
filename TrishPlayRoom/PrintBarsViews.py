@@ -1,4 +1,4 @@
-def printSortTopBar(uid,rid,pgrid):
+def printSortTopBar(uid,rid,pgid):
     print """
      <!DOCTYPE html>
         	<html>
@@ -20,9 +20,9 @@ def printSortTopBar(uid,rid,pgrid):
         								<option value="interaction">Most Interaction</option>
        				 				</select>
        				 					<input type=submit name=post> 
-        								<input type=hidden name=user_id value="""+ str(uid) +"""
-										<input type=hidden name=region_id value="""+ str(uid) +"""
-										<input type=hidden name=page_id value="""+ str(pgid) +"""
+        								<input type=hidden name=user_id value="""+ str(uid) +""">
+										<input type=hidden name=region_id value="""+ str(rid) +""">
+										<input type=hidden name=page_id value="""+ str(pgid) +""">
                 				</FORM>
                 			</div>
                 
@@ -77,8 +77,8 @@ def printAllPosts(uid, rid, pgid):
         		<div class=menuitem>
         			<FORM >
         				<input  type=submit name=post value="Profile"> 
-						<input type=hidden name=user_id value="""+ str(uid) +"""
-						<input type=hidden name=user_id value="""+ str(uid) +"""
+						<input type=hidden name=user_id value="""+ str(uid) +""">
+						<input type=hidden name=user_id value="""+ str(rid) +""">
 						<input type=hidden name=page_id value=4> 
         			</FORM>
         			
@@ -86,8 +86,8 @@ def printAllPosts(uid, rid, pgid):
         		<div class=menuitem>
         			<FORM >
         				<input type=submit name=post value="Home"> 	
-						<input type=hidden name=user_id value="""+ str(uid) +"""
-						<input type=hidden name=user_id value="""+ str(uid) +"""
+						<input type=hidden name=user_id value="""+ str(uid) +""">
+						<input type=hidden name=user_id value="""+ str(rid) +""">
 						<input type=hidden name=page_id value=2> 
         			</FORM>
         		</div> 
@@ -100,8 +100,8 @@ def printAllPosts(uid, rid, pgid):
             							<option value="2">Outside Your Window</option>
            		 					</select>
            		 					<input type=submit name=post> 
-    								<input type=hidden name=user_id value="""+ str(uid) +"""
-    								<input type=hidden name=user_id value="""+ str(uid) +"""
+    								<input type=hidden name=user_id value="""+ str(uid) +""">
+    								<input type=hidden name=user_id value="""+ str(rid) +""">
     								
             				</FORM>
         				</div>
@@ -109,8 +109,8 @@ def printAllPosts(uid, rid, pgid):
                           <div class=menuitem>    
                                 <FORM >
                                 <input type=submit name=post value="Log Out"> 
-								<input type=hidden name=user_id value="""+ str(uid) +"""
-								<input type=hidden name=user_id value="""+ str(uid) +"""
+								<input type=hidden name=user_id value="""+ str(uid) +""">
+								<input type=hidden name=user_id value="""+ str(rid) +""">
 								<input type=hidden name=page_id value=1> 
                                 </FORM>
                                 
