@@ -51,7 +51,7 @@ def printPlainTopBar():
                 
             """
 
-def printBlankSideBar(uid,rid,pgrid):
+def printBlankSideBar():
     print """
         </div> <!-- CLOSE COL1 -->
         	<div class="col2">
@@ -128,4 +128,3 @@ def printAllPosts(uid, rid, pgid):
             </body>
         </html>
         """
-x
