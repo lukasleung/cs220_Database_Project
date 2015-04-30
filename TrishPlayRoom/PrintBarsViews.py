@@ -31,7 +31,7 @@ def printSortTopBar(uid,rid,pgrid):
         <div class="col1">
 		"""
 
-def printPlainTopBar(uid,rid,pgrid):
+def printPlainTopBar():
     print """
         <!DOCTYPE html>
         	<html>
@@ -128,3 +128,4 @@ def printAllPosts(uid, rid, pgid):
             </body>
         </html>
         """
+x
