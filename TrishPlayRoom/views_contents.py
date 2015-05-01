@@ -97,16 +97,14 @@ def print_posts_from_not_region(posts, uid, rid):
 		(pid, content, comments, pos, neg) = row
 		print """
 						<div id="pcb"> <!--post_comment_block-->
-							<div class="l_d_buttons">	<!-- UPDATE PROPER TABLES AND RELOAD PAGE? -->
-								<FORM METHOD="POST" action=BisonController.py>
-										<button type=submit name="cannot_like" value="""+ str(pid) + ">+ " + str(pos) + """ </button> </br>
-										<button type=submit name="cannot_down" value="""+ str(pid) + ">- " + str(neg) + """ </button>
-								</FORM>
+							<div class="l_d_buttons">
+								<button type=submit name="cannot_like" value="""+ str(pid) + ">+ " + str(pos) + """ </button> </br>
+								<button type=submit name="cannot_down" value="""+ str(pid) + ">- " + str(neg) + """ </button>
 							</div>
 							<div class="p_c"> <!-- THESE WILL TAKE YOU TO THE POST PAGE WHERE WE WILL DISPLAY THE POST AND COMMENTS AFFILIATED -->
 								<form method=post action=BisonController.py>
 									<p> """ + content + """
-									<input type=submit name=see_post value=""" + str(pid) + """>
+									<input type=submit name=see_post value="View Post">
 									<input type=hidden name=user_id value=""" + str(uid) + """>
 									<input type=hidden name=region_id value=""" + str(rid) + """>
 									<input type=hidden name=page_id value=6>
@@ -181,10 +179,8 @@ def print_indv_post_out_region(post, comments):
 	print """
 						<div>
 						<div class="l_d_buttons">
-							<FORM METHOD="POST" action=BisonController.py>
-									<button type=submit id="cantlike" value="""+ str(pid) + ">+" + str(pos) + """ </button> </br>
-									<button type=submit id="cantdown" value= """ + str(pid) + ">-" + str(neg) + """ </button>
-							</FORM>
+							<button type=submit id="cantlike" value="""+ str(pid) + ">+" + str(pos) + """ </button> </br>
+							<button type=submit id="cantdown" value= """ + str(pid) + ">-" + str(neg) + """ </button>
 						</div>
 						<div class="p_c"> 
 							<p class=indv_post>""" + content + "</p></div></div> "
@@ -195,10 +191,8 @@ def print_indv_post_out_region(post, comments):
 		print """
 					<div id="pcb"> <!--post_comment_block-->
 						<div class="l_d_buttons">
-							<FORM METHOD="POST" action=BisonController.py>
-									<button type=submit id="cantlike" value=""" + str(cid) + " >+ " + str(pos) + """ </button> </br>
-									<button type=submit id=cantdown value=""" + str(cid) + " >- " + str(neg) + """ </button>
-							</FORM>
+							<button type=submit id="cantlike" value=""" + str(cid) + " >+ " + str(pos) + """ </button> </br>
+							<button type=submit id=cantdown value=""" + str(cid) + " >- " + str(neg) + """ </button>
 						</div>
 						<div class="p_c"> 
 							<p class="post in_comment">"""+  content + """</p>
@@ -220,8 +214,8 @@ def print_user_profile(user, num_posts, regions, num_comments):
     
 				<div id=profile_container>
 					<FORM method=POST action=BisonController.py>
-						<p> My Posts (""" + str(num_p) + """) </p>
-						<input type=submit name=view_user_posts value=true>
+						<p> My Posts (""" + str(num_p) + """) 
+						<input type=submit name=view_user_posts value=view>
 						<input type=hidden name=user_id value="""+ str(uid) +""">
 						<input type=hidden name=region_id value="""+ str(urid) +""">
 						<input type=hidden name=page_id value=5>
@@ -232,21 +226,21 @@ def print_user_profile(user, num_posts, regions, num_comments):
 	for row in regions:
 		(rid, location) = row
 		if rid == urid:
-			print "<option select=selected value=" + str(rid) + ">" + location + "</opion>"
+			print "<option selected value=" + str(rid) + ">" + location + "</opion>"
 		else:	
 			print "<option value=" + str(rid) + ">" + location + "</opion>"
     
 	print """						
 						</SELECT>
-						<INPUT type="SUBMIT" name="newRegion" value="Change">
+						<INPUT type="SUBMIT" name="new_region" value="Change">
 						<input type=hidden name=user_id value="""+ str(uid) +""">
 						<input type=hidden name=region_id value="""+ str(urid) +""">
 						<input type=hidden name=page_id value=4>
 					</FORM>
 
 					<FORM method=POST action=BisonController.py>
-						<p> My Comments (""" + str(num_c) + """) </p>
-						<input type=submit name=view_user_comments value=true>
+						<p> My Comments (""" + str(num_c) + """)
+						<input type=submit name=view_user_comments value=view>
 						<input type=hidden name=user_id value="""+ str(uid) +""">
 						<input type=hidden name=region_id value="""+ str(urid) +""">
 						<input type=hidden name=page_id value=5>

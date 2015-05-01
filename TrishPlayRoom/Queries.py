@@ -141,7 +141,6 @@ def create_post_like(uid, pid, pos, ouid):
     sql = """INSERT INTO posts_likes (uid, pid, pos, ouid)
             VALUES
             ( %s ,  %s ,  %s , %s );"""
-    print "<p> LIKING A POST "
     params = (uid, pid, pos, ouid)
     cursor.execute(sql, params)
     conn.commit()
@@ -154,7 +153,6 @@ def create_comment_like(uid, cid, pos, ouid):
     sql = """INSERT INTO comments_likes (uid, cid, pos, ouid)
             VALUES
             ( %s ,  %s ,  %s , %s );"""
-    print "<p> LIKING A comment "
     params = (uid, cid, pos, ouid)
     cursor.execute(sql, params)
     conn.commit()
@@ -232,6 +230,31 @@ def count_posts_from_user(uid):
     cursor.close()
     conn.close()
     return total
+
+############################################################
+def get_posts_from_user(uid):
+    conn, cursor = dbCursor()
+    sql = """SELECT pid, content, comments, pos, neg
+            FROM posts
+            where uid = %s ;"""
+    params = (uid,)
+    cursor.execute(sql, params)
+    posts = cursor.fetchall()
+    cursor.close()
+    conn.close()
+    return posts
+############################################################
+def get_posts_from_user_comments(uid):
+    conn, cursor = dbCursor()
+    sql = """SELECT p.pid, p.content, p.comments, p.pos, p.neg
+            FROM posts p, comments
+            where comments.uid = %s and p.pid = comments.pid;"""
+    params = (uid,)
+    cursor.execute(sql, params)
+    posts = cursor.fetchall()
+    cursor.close()
+    conn.close()
+    return posts
 ############################################################
 def count_comments_from_user(uid):
     conn, cursor = dbCursor()
@@ -244,3 +267,15 @@ def count_comments_from_user(uid):
     cursor.close()
     conn.close()
     return total
+############################################################
+def update_user_region(rid, uid):
+    conn, cursor = dbCursor()
+    sql = """UPDATE users 
+            set rid = %s 
+            WHERE uid = %s """
+    params = (rid, uid)
+    cursor.execute(sql, params)
+    conn.commit()
+    cursor.close()
+    conn.close()
+

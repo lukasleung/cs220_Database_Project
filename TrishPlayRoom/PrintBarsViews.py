@@ -10,7 +10,7 @@ def printSortTopBar(uid,rid,pgid):
         					<div id="header">
         					<img src="css/bison.jpg" height=30px width=50px style="float:left;">
         					<h3> Bison...Say Something
-        						<FORM method=POST style="float:right;padding-right:12%;">
+        						<FORM type=post action=BisonController.py style="float:right;padding-right:12%;">
         							<select name="order_by">
         								<option value="recent">Most Recent</option>
         								<option value="positive">Most Positive</option>
@@ -19,7 +19,7 @@ def printSortTopBar(uid,rid,pgid):
         								<option value="comments">Most Comments</option>
         								<option value="interaction">Most Interaction</option>
        				 				</select>
-       				 					<input type=submit name=post> 
+       				 					<input type=submit name=sort> 
         								<input type=hidden name=user_id value="""+ str(uid) +""">
 										<input type=hidden name=region_id value="""+ str(rid) +""">
 										<input type=hidden name=page_id value="""+ str(pgid) +""">
@@ -75,8 +75,8 @@ def printAllPosts(uid, rid, pgid):
         </div> <!-- close col1 -->
         	<div class="col2">
         		<div class=menuitem>
-        			<FORM >
-        				<input  type=submit name=post value="Profile"> 
+        			<FORM type=post action=BisonController.py>
+        				<input  type=submit name=go_profile value="Profile"> 
 						<input type=hidden name=user_id value="""+ str(uid) +""">
 						<input type=hidden name=region_id value="""+ str(rid) +""">
 						<input type=hidden name=page_id value=4> 
@@ -84,8 +84,8 @@ def printAllPosts(uid, rid, pgid):
         			
         		</div> 
         		<div class=menuitem>
-        			<FORM >
-        				<input type=submit name=post value="Home"> 	
+        			<FORM type=post action=BisonController.py>
+        				<input type=submit name=go_home value="Home"> 	
 						<input type=hidden name=user_id value="""+ str(uid) +""">
 						<input type=hidden name=region_id value="""+ str(rid) +""">
 						<input type=hidden name=page_id value=2> 
@@ -102,13 +102,12 @@ def printAllPosts(uid, rid, pgid):
            		 					<input type=submit name=post> 
     								<input type=hidden name=user_id value="""+ str(uid) +""">
     								<input type=hidden name=region_id value="""+ str(rid) +""">
-    								
             				</FORM>
         				</div>
         				
                           <div class=menuitem>    
-                                <FORM >
-                                <input type=submit name=post value="Log Out"> 
+                                <FORM type=post action=BisonController.py>
+                                <input type=submit name=log_out value="Log Out"> 
 								<input type=hidden name=user_id value="""+ str(uid) +""">
 								<input type=hidden name=region_id value="""+ str(rid) +""">
 								<input type=hidden name=page_id value=1> 
@@ -134,8 +133,8 @@ def printAdminBar():
 	</div> <!-- close col1 -->
         	<div class="col2">
         		<div class=menuitem>    
-                                <FORM >
-                                <input type=submit name=post value="Log Out">
+                                <FORM type=post action=BisonController.py>
+                                <input type=submit name=log_out value="Log Out">
 								<input type=hidden name=page_id value=1> 
                                 </FORM>
                                 
@@ -148,7 +147,7 @@ def printAdminBar():
                     </div> <!-- close colmask leftmenu -->
                                 
                 <div id="footer">
-                        <p>For users that is in a region</p>
+                        <p>Admin</p>
                 </div>
             </body>
         </html>
