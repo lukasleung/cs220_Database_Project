@@ -128,3 +128,30 @@ def printAllPosts(uid, rid, pgid):
             </body>
         </html>
         """
+        
+def printAdminBar(uid, rid, pgid): 
+	print """
+	</div> <!-- close col1 -->
+        	<div class="col2">
+        		<div class=menuitem>    
+                                <FORM >
+                                <input type=submit name=post value="Log Out"> 
+								<input type=hidden name=user_id value="""+ str(uid) +""">
+								<input type=hidden name=region_id value="""+ str(rid) +""">
+								<input type=hidden name=page_id value=1> 
+                                </FORM>
+                                
+                          </div>       
+                                <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+                                </div>
+                            </div> <!-- close col 2 -->
+                                
+                        </div> <!-- close colleft -->
+                    </div> <!-- close colmask leftmenu -->
+                                
+                <div id="footer">
+                        <p>For users that is in a region</p>
+                </div>
+            </body>
+        </html>
+        """
