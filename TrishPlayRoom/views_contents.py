@@ -106,7 +106,7 @@ def print_posts_from_not_region(posts, uid, rid):
 							<div class="p_c"> <!-- THESE WILL TAKE YOU TO THE POST PAGE WHERE WE WILL DISPLAY THE POST AND COMMENTS AFFILIATED -->
 								<form method=post action=BisonController.py>
 									<p> """ + content + """
-									<input type=submit name=see_post value="View Post">
+									<input type=submit name=see_post value=""" + str(pid) + """>
 									<input type=hidden name=user_id value=""" + str(uid) + """>
 									<input type=hidden name=region_id value=""" + str(rid) + """>
 									<input type=hidden name=page_id value=6>
@@ -219,21 +219,39 @@ def print_user_profile(user, num_posts, regions, num_comments):
     
     
 				<div id=profile_container>
-					<a href=?uid=""" + str(uid) + """><p> My Posts (""" + str(num_p) + """) </p></a>
+					<FORM method=POST action=BisonController.py>
+						<p> My Posts (""" + str(num_p) + """) </p>
+						<input type=submit name=view_user_posts value=true>
+						<input type=hidden name=user_id value="""+ str(uid) +""">
+						<input type=hidden name=region_id value="""+ str(urid) +""">
+						<input type=hidden name=page_id value=5>
+					</FORM>
+
 					<FORM method=POST action=BisonController.py>
 						<SELECT name=newRegion>"""
 	for row in regions:
 		(rid, location) = row
 		if rid == urid:
-			print "<option select=selected value=old>" + location + "</opion>"
+			print "<option select=selected value=" + str(rid) + ">" + location + "</opion>"
 		else:	
 			print "<option value=" + str(rid) + ">" + location + "</opion>"
     
 	print """						
 						</SELECT>
 						<INPUT type="SUBMIT" name="newRegion" value="Change">
+						<input type=hidden name=user_id value="""+ str(uid) +""">
+						<input type=hidden name=region_id value="""+ str(urid) +""">
+						<input type=hidden name=page_id value=4>
 					</FORM>
-					<a href=?uid=""" + str(uid) + """><p> My Comments (""" + str(num_c) + """)</p></a>
+
+					<FORM method=POST action=BisonController.py>
+						<p> My Comments (""" + str(num_c) + """) </p>
+						<input type=submit name=view_user_comments value=true>
+						<input type=hidden name=user_id value="""+ str(uid) +""">
+						<input type=hidden name=region_id value="""+ str(urid) +""">
+						<input type=hidden name=page_id value=5>
+					</FORM>
+
 				</div>
 		"""
     
@@ -287,6 +305,7 @@ def print_admin_page(comms_more_post, like_comm_more_post, up_down_post, count_t
 										</select>
 									 Topics </b> 
 									<input type=submit name=minTopic value=Go>
+									<input type=hidden name=page_id value=7>
 								</FORM>
     								
 								<ul> <u> At least""" + num + """:</u>"""
