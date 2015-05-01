@@ -129,15 +129,13 @@ def printAllPosts(uid, rid, pgid):
         </html>
         """
         
-def printAdminBar(uid, rid, pgid): 
+def printAdminBar(): 
 	print """
 	</div> <!-- close col1 -->
         	<div class="col2">
         		<div class=menuitem>    
                                 <FORM >
-                                <input type=submit name=post value="Log Out"> 
-								<input type=hidden name=user_id value="""+ str(uid) +""">
-								<input type=hidden name=region_id value="""+ str(rid) +""">
+                                <input type=submit name=post value="Log Out">
 								<input type=hidden name=page_id value=1> 
                                 </FORM>
                                 

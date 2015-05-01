@@ -73,12 +73,25 @@ def create_post(uid, content, rid):
     conn.close()
 
 ############################################################
-def get_ouid(pid):
+def get_ouid_post(pid):
     conn, cursor = dbCursor()
     sql = """SELECT uid
             FROM posts
             WHERE posts.pid= %s """
     params = (pid, )
+    cursor.execute(sql, params)
+    ouid = cursor.fetchone()
+    cursor.close()
+    conn.close()
+    return ouid
+
+############################################################
+def get_ouid_comment(cid):
+    conn, cursor = dbCursor()
+    sql = """SELECT uid
+            FROM comments
+            WHERE comments.cid= %s """
+    params = (cid, )
     cursor.execute(sql, params)
     ouid = cursor.fetchone()
     cursor.close()
@@ -95,6 +108,7 @@ def update_post_like(pos, uid, pid):
     conn.commit()
     cursor.close()
     conn.close()
+    
 ############################################################
 def count_post_likes(pid):
     conn, cursor = dbCursor()
@@ -135,6 +149,19 @@ def create_post_like(uid, pid, pos, ouid):
     conn.close()
 
 ############################################################
+def create_comment_like(uid, cid, pos, ouid):
+    conn, cursor = dbCursor()
+    sql = """INSERT INTO comments_likes (uid, cid, pos, ouid)
+            VALUES
+            ( %s ,  %s ,  %s , %s );"""
+    print "<p> LIKING A comment "
+    params = (uid, cid, pos, ouid)
+    cursor.execute(sql, params)
+    conn.commit()
+    cursor.close()
+    conn.close()
+    
+############################################################
 def get_post(pid):
     conn, cursor = dbCursor()
     sql =""" SELECT pid, content, pos, neg
@@ -152,10 +179,22 @@ def get_comments(pid):
     conn, cursor = dbCursor()
     sql =""" SELECT cid, content, pos, neg
         FROM comments
-        WHERE pid = %s ;"""
+        WHERE pid = %s 
+        ORDER BY ts DESC; """
     params = (pid, )
     cursor.execute(sql, params)
     ouid = cursor.fetchall()
     cursor.close()
     conn.close()
     return ouid
+############################################################
+def create_comment(pid, uid, content):
+    conn, cursor = dbCursor()
+    sql = """INSERT INTO comments (pid, uid, content)
+            VALUES
+            ( %s , %s , %s );"""
+    params = (pid, uid, content)
+    cursor.execute(sql, params)
+    conn.commit()
+    cursor.close()
+    conn.close()
