@@ -105,6 +105,7 @@ def print_posts_from_not_region(posts, uid, rid):
 								<form method=post action=BisonController.py>
 									<p> """ + content + """
 									<input type=submit name=see_post value="View Post">
+									<input type=hidden name=post_id value="""+ str(pid) +""">
 									<input type=hidden name=user_id value=""" + str(uid) + """>
 									<input type=hidden name=region_id value=""" + str(rid) + """>
 									<input type=hidden name=page_id value=6>

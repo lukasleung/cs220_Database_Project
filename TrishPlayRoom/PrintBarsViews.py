@@ -54,11 +54,11 @@ def printNewRegionSortBar(uid,rid,pgid,nrid):
         								<option value="comments">Most Comments</option>
         								<option value="interaction">Most Interaction</option>
        				 				</select>
-       				 					<input type=submit name=sort> 
+       				 					<input type=submit value=Sort> 
         								<input type=hidden name=user_id value="""+ str(uid) +""">
 										<input type=hidden name=region_id value="""+ str(rid) +""">
 										<input type=hidden name=page_id value="""+ str(pgid) +""">
-										<input type=hidden name=chooseRegion="""+ str(nrid) +"""> 
+										<input type=hidden name=chooseRegion value="""+ str(nrid) +"""> 
                 				</FORM>
                 			</div>
                 
@@ -131,9 +131,9 @@ def printAllPosts(uid, rid, pgid):
             				<FORM METHOD=POST action=BisonController.py>
             					Choose A Region
            					 		<select name=chooseRegion >
-            							<option value="1">West Coast?</option>
-            							<option value="3">East Coast</option>
-            							<option value="2">Bible Belt</option>
+            							<option value="1">Under Where?</option>
+            							<option value="3">Over There</option>
+            							<option value="2">Outside Your Window</option>
            		 					</select>
            		 					<input type=submit name=post> 
     								<input type=hidden name=user_id value="""+ str(uid) +""">
