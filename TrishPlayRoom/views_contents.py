@@ -213,13 +213,13 @@ def print_user_profile(user, num_posts, regions, num_comments):
 	(uid, urid, pos, neg) = user
 	num_p = num_posts[0]
 	num_c = num_comments[0]
-	print "<div id=pos_neg><p>Total:  "+ pos + "up votes, " + neg +""" down votes </p>
+	print "<div id=pos_neg><p>Total:  "+ str(pos) + "up votes, " + str(neg) +""" down votes </p>
 					<hr>
 				</div>
     
     
 				<div id=profile_container>
-					<a href=?uid=""" + uid + """><p> My Posts (""" + num_posts + """) </p></a>
+					<a href=?uid=""" + str(uid) + """><p> My Posts (""" + str(num_p) + """) </p></a>
 					<FORM method=POST action=BisonController.py>
 						<SELECT name=newRegion>"""
 	for row in regions:
@@ -227,13 +227,13 @@ def print_user_profile(user, num_posts, regions, num_comments):
 		if rid == urid:
 			print "<option select=selected value=old>" + location + "</opion>"
 		else:	
-			print "<option value=" + rid + ">" + location + "</opion>"
+			print "<option value=" + str(rid) + ">" + location + "</opion>"
     
 	print """						
 						</SELECT>
 						<INPUT type="SUBMIT" name="newRegion" value="Change">
 					</FORM>
-					<a href=?uid=""" + uid + """><p> My Comments (""" + num_posts + """)</p></a>
+					<a href=?uid=""" + str(uid) + """><p> My Comments (""" + str(num_c) + """)</p></a>
 				</div>
 		"""
     

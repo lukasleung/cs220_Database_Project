@@ -86,7 +86,14 @@ def profile(form):
     uid = form["user_id"].value
     rid = form["region_id"].value
     pgid = "4"
+    
+    user = get_user(uid)
+    num_posts = count_posts_from_user(uid)
+    regions = get_regions()
+    num_comments = count_comments_from_user(uid)
+    
     printPlainTopBar()
+    print_user_profile(user, num_posts, regions, num_comments)
     printAllPosts(uid, rid, pgid)
 
 ############################################################

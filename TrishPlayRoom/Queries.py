@@ -198,3 +198,49 @@ def create_comment(pid, uid, content):
     conn.commit()
     cursor.close()
     conn.close()
+############################################################
+def get_regions():
+    conn, cursor = dbCursor()
+    sql = """SELECT rid, location
+    FROM regions;"""
+    cursor.execute(sql,)
+    regions = cursor.fetchall()
+    cursor.close()
+    conn.close()
+    return regions
+############################################################
+def get_user(uid):
+    conn, cursor = dbCursor()
+    sql = """SELECT uid, rid, pos, neg
+            FROM users
+            WHERE uid= %s """
+    params = (uid,)
+    cursor.execute(sql, params)
+    user = cursor.fetchone()
+    cursor.close()
+    conn.close()
+    return user
+############################################################
+def count_posts_from_user(uid):
+    conn, cursor = dbCursor()
+    sql = """SELECT count(pid)
+            FROM posts
+            where uid = %s ;"""
+    params = (uid,)
+    cursor.execute(sql, params)
+    total = cursor.fetchone()
+    cursor.close()
+    conn.close()
+    return total
+############################################################
+def count_comments_from_user(uid):
+    conn, cursor = dbCursor()
+    sql = """SELECT count(cid)
+            FROM comments
+            WHERE uid = %s ;"""
+    params = (uid,)
+    cursor.execute(sql, params)
+    total = cursor.fetchone()
+    cursor.close()
+    conn.close()
+    return total
