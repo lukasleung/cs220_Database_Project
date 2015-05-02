@@ -65,9 +65,9 @@ def printAdminContent(stats, stats2):
 	
 	print """<table border="1" style="width:50%">"""
 	print "<tr>"
-	print "<td>"+ "Region" +"</td>"
-	print "<td>"+ "Upvotes" +"</td>"
-	print "<td>"+ "Downvotes" +"</td>"
+	print "<td>"+ "User ID" +"</td>"
+	print "<td>"+ "Comments" +"</td>"
+	print "<td>"+ "Posts" +"</td>"
 	print "</tr>"
 	for rows2 in stats2:
 		(uid,comments, posts) = rows2
