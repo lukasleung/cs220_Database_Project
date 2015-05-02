@@ -44,9 +44,11 @@ def print_all_users(users):
 				</table>
 	"""
     
-def printAdminContent():
+def printAdminContent(rows):
+	
+	(rid, pos, neg) 
 	print """     
-	<table class="user_table">
+				<table class="user_table">
 					
 					<tr>
 						<td>Admin</td>
@@ -55,17 +57,28 @@ def printAdminContent():
 							<input type=submit name=loginUser value=login>
 							<input type=hidden name=page_id value=7>
 						</form></td>
-					</tr>
-					<FORM METHOD="POST" action=BisonController.py>
-										<button type=submit name="Function1"  </button> </br>
-										<button type=submit name="Function2" </button>
-										
-										<input type=hidden name=page_id value=7>
-								</FORM>
-					
-					
-					
-					"""
+					</tr>"""
+
+	for row in users:
+		(uid,comments, posts) = rows
+		print "<tr><td>" + str(uid) + "</td>"
+		print "<td>" + comments + "</td>"
+		print "<td>" + posts + "</td>"
+		print """<td><form method=post action=BisonController.py>
+							<input type=submit name=loginUser value=admin>
+							
+							<input type=hidden name=page_id value=7>
+						</form></td> </tr>"""
+		
+	print """		
+						<tr>
+							<td></td>
+							
+							
+						</tr>
+				
+				</table>
+	"""
 # Print posts from a specific region 
 # 	This will work for both logged in users and logged out users
 def print_posts_from_region(posts, uid, rid):
