@@ -44,9 +44,11 @@ def print_all_users(users):
 				</table>
 	"""
     
-def printAdminContent(rows):
+def printAdminContent(stats):
+	for rows in stats:
+		(rid, pos, neg) = rows
+		#(str(rid), str(pos), str(neg)) = rows
 	
-	(rid, pos, neg) 
 	print """     
 				<table class="user_table">
 					
@@ -61,9 +63,9 @@ def printAdminContent(rows):
 
 	for row in users:
 		(uid,comments, posts) = rows
-		print "<tr><td>" + str(uid) + "</td>"
-		print "<td>" + comments + "</td>"
-		print "<td>" + posts + "</td>"
+		print "<tr><td>" + str(rid) + "</td>"
+		print "<td>" + str(pos) + "</td>"
+		print "<td>" + str(neg) + "</td>"
 		print """<td><form method=post action=BisonController.py>
 							<input type=submit name=loginUser value=admin>
 							
