@@ -278,4 +278,34 @@ def update_user_region(rid, uid):
     conn.commit()
     cursor.close()
     conn.close()
+############################################################
+def get_everyone_post_comment():
+    conn, cursor = dbCursor()
+    sql = """Select *
+    FROM (SELECT users.uid, IFNULL(count(cid), 0)
+    FROM users LEFT OUTER JOIN comments
+    on users.uid = comments.uid
+    GROUP BY users.uid) as tab1
+    natural join
+    (SELECT users.uid, IFNULL(count(pid), 0)
+    FROM users LEFT OUTER JOIN posts
+    on users.uid = posts.uid
+    GROUP BY users.uid) as tab2"""
+    cursor.execute(sql, )
+    posts = cursor.fetchall()
+    cursor.close()
+    conn.close()
+    return posts
 
+############################################################
+def get_regions_pos_neg():
+    conn, cursor = dbCursor()
+    sql = """SELECT regions.rid, IFNULL(SUM(posts.pos), 0), IFNULL(SUM(posts.neg),0)
+            FROM regions LEFT OUTER JOIN posts
+            on regions.rid = posts.rid
+            GROUP BY regions.rid"""
+    cursor.execute(sql, )
+    posts = cursor.fetchall()
+    cursor.close()
+    conn.close()
+    return posts
