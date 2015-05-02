@@ -198,6 +198,10 @@ def individual_outside():
 ############################################################
 def admin():
     printPlainTopBar()
+    
+    stats = get_everyone_post_comment()
+    stats2 = get_regions_pos_neg()
+    printAdminContent(stats2,stats)
     printAdminBar()
 
 ############################################################

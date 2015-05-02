@@ -44,43 +44,41 @@ def print_all_users(users):
 				</table>
 	"""
     
-def printAdminContent(stats):
+def printAdminContent(stats, stats2):
+	print """<table border="1" style="width:50%">"""
+	print "<tr>"
+	print "<td>"+ "Region" +"</td>"
+	print "<td>"+ "Upvotes" +"</td>"
+	print "<td>"+ "Downvotes" +"</td>"
+	print "</tr>"
 	for rows in stats:
 		(rid, pos, neg) = rows
-		#(str(rid), str(pos), str(neg)) = rows
+		print "<tr>"
+		print "<td>"+ str(rid) +"</td>"
+		print "<td>"+ str(pos) +"</td>"
+		print "<td>"+ str(neg) +"</td>"
+		print "</tr>"
+	print "</table>"
 	
-	print """     
-				<table class="user_table">
-					
-					<tr>
-						<td>Admin</td>
-						<td>N/A</td>
-						<td><form method=post action=BisonController.py>
-							<input type=submit name=loginUser value=login>
-							<input type=hidden name=page_id value=7>
-						</form></td>
-					</tr>"""
-
-	for row in users:
-		(uid,comments, posts) = rows
-		print "<tr><td>" + str(rid) + "</td>"
-		print "<td>" + str(pos) + "</td>"
-		print "<td>" + str(neg) + "</td>"
-		print """<td><form method=post action=BisonController.py>
-							<input type=submit name=loginUser value=admin>
-							
-							<input type=hidden name=page_id value=7>
-						</form></td> </tr>"""
-		
-	print """		
-						<tr>
-							<td></td>
-							
-							
-						</tr>
-				
-				</table>
-	"""
+	print """<br>
+	<br>"""
+	
+	print """<table border="1" style="width:50%">"""
+	print "<tr>"
+	print "<td>"+ "Region" +"</td>"
+	print "<td>"+ "Upvotes" +"</td>"
+	print "<td>"+ "Downvotes" +"</td>"
+	print "</tr>"
+	for rows2 in stats2:
+		(uid,comments, posts) = rows2
+		print "<tr>"
+		print "<td>"+ str(uid) +"</td>"
+		print "<td>"+ str(comments) +"</td>"
+		print "<td>"+ str(posts) +"</td>"
+		print "</tr>"
+	print "</table>"
+	
+	
 # Print posts from a specific region 
 # 	This will work for both logged in users and logged out users
 def print_posts_from_region(posts, uid, rid):
